@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:TogglTimeManager"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Center" Height="34" VerticalAlignment="Bottom" Width="301"/>
-    </Grid>
+    <Window.Resources>
+        <local:MainWindowViewModel x:Key="ViewModel" TextBox="Initial Text box content"/>
+    </Window.Resources>
+    <Window.Content>
+        <Grid>
+            <TextBox HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="301" DataContext="{Binding TextBox, Mode=TwoWay, Source={StaticResource ViewModel}}"/>
+            <Button Content="Button" HorizontalAlignment="Center" Height="34" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,40" Command="{Binding ButtonCommand, Mode=OneWay, Source={StaticResource ViewModel}}" />
+        </Grid>
+    </Window.Content>
 </Window>
