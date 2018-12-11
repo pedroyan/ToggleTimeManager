@@ -17,7 +17,8 @@ namespace TogglTimeManager
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            //TODO: Configure IOC here
+            //TODO: Configure IOC here with AUTOFAC
+            //TODO: After IOC is configured, set the navigation service.
         }
     }
 }

@@ -25,7 +25,14 @@ namespace TogglTimeManager.Views
         public FileSelectionPage()
         {
             InitializeComponent();
-            DataContext = new FileSelectionViewModel(new FilePicker());
+
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            //TODO: Resolve Navigation service from IOC instead of using this OnLoaded method
+            DataContext = new FileSelectionViewModel(new FilePicker(), new PageNavigationService(NavigationService));
         }
     }
 }

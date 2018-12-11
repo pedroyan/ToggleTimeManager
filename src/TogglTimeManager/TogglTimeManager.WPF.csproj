@@ -55,8 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\PageNavigationService.cs" />
     <Compile Include="Views\FileSelectionPage.xaml.cs">
       <DependentUpon>FileSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainDashboard.xaml.cs">
+      <DependentUpon>MainDashboard.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -69,12 +74,16 @@
     <Compile Include="Services\FilePicker.cs" />
     <Compile Include="Services\IFilePicker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ButtonCommand.cs" />
+    <Compile Include="Helpers\ButtonCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\FileSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
