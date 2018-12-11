@@ -9,7 +9,6 @@ namespace TogglTimeManager.ViewModels
     {
         private readonly IFilePicker _filePicker;
         //TODO: Implement filtering for csv only (https://www.wpf-tutorial.com/dialogs/the-openfiledialog/)
-        //TODO: Extract the file picking functionality to its own service interface
 
         public MainWindowViewModel(IFilePicker filePicker)
         {
@@ -33,7 +32,8 @@ namespace TogglTimeManager.ViewModels
 
         private void PickFile()
         {
-            if (_filePicker.PickFile(out var filePath))
+            var filePath = _filePicker.PickFile();
+            if (!string.IsNullOrEmpty(filePath))
             {
                 TextBox = filePath;
             }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TogglTimeManager.Properties;
 
 namespace TogglTimeManager.Services
 {
     public interface IFilePicker
     {
         /// <summary>
-        /// Shows the file picker to the user and gets the path to the file. Returns true if the selection was successful
+        /// Shows the file picker to the user and gets the path to the file. Returns null if the selection fails
         /// </summary>
-        /// <param name="filePath">The file path selected by the user</param>
         /// <returns>A flag indicating if a path was successfully selected</returns>
-        bool PickFile(out string filePath);
+        string PickFile();
     }
 }

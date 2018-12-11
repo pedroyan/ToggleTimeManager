@@ -9,18 +9,11 @@ namespace TogglTimeManager.Services
 {
     public class FilePicker : IFilePicker
     {
-        public bool PickFile(out string filePath)
+        ///<inheritdoc/>
+        public string PickFile()
         {
-            filePath = null;
-
             var openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                filePath = openFileDialog.FileName;
-                return true;
-            }
-
-            return false;
+            return openFileDialog.ShowDialog() != true ? null : openFileDialog.FileName;
         }
     }
 }
