@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TogglTimeManager"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
         Title="MainWindow" Height="450" Width="800">
     <Window.Content>
         <Grid>
@@ -13,7 +14,7 @@
                 <TextBox Text="{Binding TextBox}" Height="24" Width="300" VerticalContentAlignment="Center"/>
                 <Button Content="Select" HorizontalAlignment="Center" Height="24" VerticalAlignment="Bottom" Width="90" Command="{Binding PickFileCommand}" />
             </StackPanel>
-            <Button Content="Process" HorizontalAlignment="Left" Height="29" Margin="346,284,0,0" VerticalAlignment="Top" Width="96"/>
+            <Button Content="Process" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="96" Margin="0,0,0,50"/>
         </Grid>
     </Window.Content>
 </Window>
