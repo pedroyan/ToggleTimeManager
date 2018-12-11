@@ -33,6 +33,11 @@ namespace TogglTimeManager
         }
 
         private ICommand _buttonCommand;
-        public ICommand ButtonCommand => _buttonCommand ?? (_buttonCommand = new ButtonCommand(this));
+        public ICommand ButtonCommand => _buttonCommand ?? (_buttonCommand = new ButtonCommand(ButtonClicked));
+
+        private void ButtonClicked()
+        {
+            TextBox = "MVVM Rules";
+        }
     }
 }
