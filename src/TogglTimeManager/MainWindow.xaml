@@ -11,8 +11,12 @@
     </Window.Resources>
     <Window.Content>
         <Grid>
-            <TextBox HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding TextBox, Source={StaticResource ViewModel}}" VerticalAlignment="Center" Width="301" />
-            <Button Content="Button" HorizontalAlignment="Center" Height="34" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,40" Command="{Binding ButtonCommand, Mode=OneWay, Source={StaticResource ViewModel}}" />
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <Label Content="Path:" Height="24" Width="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox Text="{Binding TextBox, Source={StaticResource ViewModel}}" Height="24" Width="300" VerticalContentAlignment="Center"/>
+                <Button Content="Select" HorizontalAlignment="Center" Height="24" VerticalAlignment="Bottom" Width="90" Command="{Binding PickFileCommand, Mode=OneWay, Source={StaticResource ViewModel}}" />
+            </StackPanel>
+            <Button Content="Process" HorizontalAlignment="Left" Height="29" Margin="346,284,0,0" VerticalAlignment="Top" Width="96"/>
         </Grid>
     </Window.Content>
 </Window>
