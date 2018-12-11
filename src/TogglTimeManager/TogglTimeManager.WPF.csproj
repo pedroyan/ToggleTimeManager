@@ -63,6 +63,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\FilePicker.cs" />
+    <Compile Include="Services\IFilePicker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ButtonCommand.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

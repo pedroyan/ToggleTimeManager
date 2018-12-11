@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Windows.Input;
 using Microsoft.Win32;
+using TogglTimeManager.Services;
 
 namespace TogglTimeManager.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly IFilePicker _filePicker;
         //TODO: Implement filtering for csv only (https://www.wpf-tutorial.com/dialogs/the-openfiledialog/)
         //TODO: Extract the file picking functionality to its own service interface
+
+        public MainWindowViewModel(IFilePicker filePicker)
+        {
+            _filePicker = filePicker;
+        }
 
         private string _textBox;
         public string TextBox
@@ -26,14 +33,9 @@ namespace TogglTimeManager.ViewModels
 
         private void PickFile()
         {
-            var openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            if (_filePicker.PickFile(out var filePath))
             {
-                TextBox = openFileDialog.FileName;
-            }
-            else
-            {
-                Console.WriteLine($"Did not return true :( {openFileDialog.FileName}");
+                TextBox = filePath;
             }
         }
     }

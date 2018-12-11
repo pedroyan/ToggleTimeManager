@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 
 namespace TogglTimeManager.Views
@@ -11,7 +12,7 @@ namespace TogglTimeManager.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowViewModel(new FilePicker());
         }
     }
 }
