@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogglTimeManager", "TogglTimeManager\TogglTimeManager.csproj", "{3125A8D9-6818-48BD-9A9B-E224BD9A7D14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogglTimeManager.WPF", "TogglTimeManager\TogglTimeManager.WPF.csproj", "{3125A8D9-6818-48BD-9A9B-E224BD9A7D14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
