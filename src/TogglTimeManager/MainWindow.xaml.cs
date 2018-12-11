@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq.Expressions;
+using System.Windows;
 using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 
@@ -12,7 +13,12 @@ namespace TogglTimeManager.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel(new FilePicker());
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new FileSelectionPage());
         }
     }
 }

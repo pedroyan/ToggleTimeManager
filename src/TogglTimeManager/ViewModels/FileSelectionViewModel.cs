@@ -5,12 +5,12 @@ using TogglTimeManager.Services;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class FileSelectionViewModel : BaseViewModel
     {
         private readonly IFilePicker _filePicker;
         //TODO: Implement filtering for csv only (https://www.wpf-tutorial.com/dialogs/the-openfiledialog/)
 
-        public MainWindowViewModel(IFilePicker filePicker)
+        public FileSelectionViewModel(IFilePicker filePicker)
         {
             _filePicker = filePicker;
         }
