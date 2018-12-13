@@ -23,28 +23,20 @@ namespace TogglTimeManager
             base.OnStartup(e);
 
             var builder = new ContainerBuilder();
-            var assembly = Assembly.GetExecutingAssembly();
-
-            builder.RegisterAssemblyTypes(assembly)
-                .Where(t => t.Namespace == typeof(IFilePicker).Namespace)
-                .AsImplementedInterfaces();
-
-            builder.RegisterType<FileSelectionViewModel>();
+            IoC.RegisterServices(builder);
 
             var window = new MainWindow();
             window.Loaded += (s, args) =>
             {
+                //This can be done on a better way that does not leak infrastructure details into other parts
+                //of the code but no need to over-complicate this simple software for now
                 builder.Register(c => new PageNavigationService(window.MainFrame.NavigationService))
                     .As<IPageNavigationService>();
             };
             window.Show();
 
             var scope = builder.Build();
-
             IoC.SetScope(scope);
-
-            //TODO: Configure IOC here with AUTOFAC
-            //TODO: After IOC is configured, set the navigation service.
         }
     }
 }

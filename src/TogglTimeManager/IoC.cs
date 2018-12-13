@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
 using TogglTimeManager.Services;
+using TogglTimeManager.ViewModels;
 
 namespace TogglTimeManager
 {
@@ -24,6 +25,22 @@ namespace TogglTimeManager
         public static void SetScope(ILifetimeScope scope)
         {
             _scope = scope;
+        }
+
+        /// <summary>
+        /// Register the core services and dependencies of the application
+        /// </summary>
+        /// <param name="builder">The DI container builder</param>
+        public static void RegisterServices(ContainerBuilder builder)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            builder.RegisterAssemblyTypes(assembly)
+                .Where(t => t.Namespace == typeof(IFilePicker).Namespace)
+                .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(assembly)
+                .Where(t => t.Namespace == typeof(FileSelectionViewModel).Namespace);
         }
 
         /// <summary>

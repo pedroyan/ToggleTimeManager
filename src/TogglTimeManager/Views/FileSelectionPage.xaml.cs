@@ -25,7 +25,6 @@ namespace TogglTimeManager.Views
         public FileSelectionPage()
         {
             InitializeComponent();
-
             Loaded += OnLoaded;
         }
 
