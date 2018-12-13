@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using CsvHelper;
 
 namespace ToggleTimeManager.Core
 {
@@ -17,9 +21,21 @@ namespace ToggleTimeManager.Core
             }
 
 
-            //Remember to check the book Domain Driven Design by Eric Evans on the chapter that
-            //talks about factories and reconstitution (page 146)
-            throw new NotImplementedException("Actual parsing still needs implementation");
+            IEnumerable<TimeEntry> records;
+            using (var reader = File.OpenText(filePath))
+            {
+                var csvParser = new CsvReader(reader);
+                records = csvParser.GetRecords<TimeEntry>();
+            }
+
+            return new TimeSheet()
+            {
+                EndDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                TimeEntries = records.ToList()
+            };
+
         }
+
     }
 }
