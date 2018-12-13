@@ -9,10 +9,10 @@ namespace TogglTimeManager.ViewModels
     public class FileSelectionViewModel : BaseViewModel
     {
         private readonly IFilePicker _filePicker;
-        private readonly INavigationService _navigationService;
+        private readonly IPageNavigationService _navigationService;
         //TODO: Implement filtering for csv only (https://www.wpf-tutorial.com/dialogs/the-openfiledialog/)
 
-        public FileSelectionViewModel(IFilePicker filePicker, INavigationService navigationService)
+        public FileSelectionViewModel(IFilePicker filePicker, IPageNavigationService navigationService)
         {
             _filePicker = filePicker;
             _navigationService = navigationService;

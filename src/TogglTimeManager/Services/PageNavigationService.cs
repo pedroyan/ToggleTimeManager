@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 
 namespace TogglTimeManager.Services
 {
-    public class PageNavigationService : INavigationService
+    public class PageNavigationService : IPageNavigationService
     {
         private readonly NavigationService _service;
 

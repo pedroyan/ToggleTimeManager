@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace TogglTimeManager.Services
 {
-    public interface INavigationService
+    public interface IPageNavigationService
     {
         void GoBack();
         void GoForward();
