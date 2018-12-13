@@ -10,9 +10,11 @@ namespace TogglTimeManager.Services
     public class FilePicker : IFilePicker
     {
         ///<inheritdoc/>
-        public string PickFile()
+        public string PickFile(string extension = null)
         {
             var openFileDialog = new OpenFileDialog();
+            var filter = string.IsNullOrWhiteSpace(extension) ? "All files (*.*)|*.*" : extension;
+            openFileDialog.Filter = filter;
             return openFileDialog.ShowDialog() != true ? null : openFileDialog.FileName;
         }
     }

@@ -42,7 +42,7 @@ namespace TogglTimeManager.ViewModels
 
         private void PickFile()
         {
-            var filePath = _filePicker.PickFile();
+            var filePath = _filePicker.PickFile("Csv files (*.csv)|*.csv");
             if (!string.IsNullOrEmpty(filePath))
             {
                 TextBox = filePath;
