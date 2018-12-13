@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogglTimeManager.WPF", "TogglTimeManager\TogglTimeManager.WPF.csproj", "{3125A8D9-6818-48BD-9A9B-E224BD9A7D14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToggleTimeManager.Core", "ToggleTimeManager.Core\ToggleTimeManager.Core.csproj", "{7CFB693F-7BF4-482E-9B0F-3B340BFDFC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToggleTimeManager.Core.Tests", "ToggleTimeManager.Core.Tests\ToggleTimeManager.Core.Tests.csproj", "{45BC3F49-FCA6-4CFA-BFF8-D9141860666B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3125A8D9-6818-48BD-9A9B-E224BD9A7D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3125A8D9-6818-48BD-9A9B-E224BD9A7D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3125A8D9-6818-48BD-9A9B-E224BD9A7D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CFB693F-7BF4-482E-9B0F-3B340BFDFC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFB693F-7BF4-482E-9B0F-3B340BFDFC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFB693F-7BF4-482E-9B0F-3B340BFDFC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFB693F-7BF4-482E-9B0F-3B340BFDFC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45BC3F49-FCA6-4CFA-BFF8-D9141860666B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45BC3F49-FCA6-4CFA-BFF8-D9141860666B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45BC3F49-FCA6-4CFA-BFF8-D9141860666B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45BC3F49-FCA6-4CFA-BFF8-D9141860666B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
