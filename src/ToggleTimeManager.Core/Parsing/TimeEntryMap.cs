@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration;
+using ToggleTimeManager.Core.Models;
 
 namespace ToggleTimeManager.Core.Parsing
 {

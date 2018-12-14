@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Microsoft.Win32;
+using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.Views;
 

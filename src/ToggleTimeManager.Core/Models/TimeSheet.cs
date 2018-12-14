@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace ToggleTimeManager.Core
+namespace ToggleTimeManager.Core.Models
 {
     public class TimeSheet
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using ToggleTimeManager.Core.Models;
 
 namespace ToggleTimeManager.Core.Tests
 {

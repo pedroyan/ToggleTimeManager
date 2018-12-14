@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using ToggleTimeManager.Core.Models;
 using ToggleTimeManager.Core.Parsing;
 
 namespace ToggleTimeManager.Core

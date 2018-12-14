@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CsvHelper;
+using ToggleTimeManager.Core.Models;
 
 namespace ToggleTimeManager.Core.Parsing
 {
