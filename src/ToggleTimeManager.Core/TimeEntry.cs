@@ -19,6 +19,6 @@ namespace ToggleTimeManager.Core
         /// <summary>
         /// The amount of time registered by this time entry
         /// </summary>
-        public TimeSpan RegisteredTime { get; set; }
+        public TimeSpan Duration { get; set; }
     }
 }

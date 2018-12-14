@@ -7,7 +7,7 @@ namespace ToggleTimeManager.Core.Parsing
         public TimeEntryMap()
         {
             AutoMap();
-            Map(m => m.RegisteredTime)
+            Map(m => m.Duration)
                 .TypeConverter<TimeConverter>().Name("Registered time");
         }
     }

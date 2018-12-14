@@ -7,7 +7,7 @@ using CsvHelper;
 
 namespace ToggleTimeManager.Core.Parsing
 {
-    public static class TogglCsvParser
+    internal static class TogglCsvParser
     {
         internal static List<TimeEntry> ParseCsv(string filePath)
         {
