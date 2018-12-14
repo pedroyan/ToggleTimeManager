@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
@@ -16,8 +17,9 @@ namespace ToggleTimeManager.Core.Tests
 
             Assert.AreEqual(5, resultSheet.TimeEntries.Count);
 
-            Assert.AreEqual(new DateTime(2018, 11, 01), resultSheet.StartDate);
-            Assert.AreEqual(new DateTime(2018, 11, 30), resultSheet.EndDate);
+            Debug.Assert(resultSheet.Period != null, "resultSheet.Period != null");
+            Assert.AreEqual(new DateTime(2018, 11, 01), resultSheet.Period.Value.StartDate);
+            Assert.AreEqual(new DateTime(2018, 11, 30), resultSheet.Period.Value.EndDate);
 
             resultSheet.TimeEntries[0]
                 .AssertRecord("Pedro Company", "CT", new TimeSpan(14, 41, 36));

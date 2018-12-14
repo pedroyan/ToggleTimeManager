@@ -30,11 +30,11 @@ namespace ToggleTimeManager.Core
                 TimeEntries = records.ToList()
             };
 
-            (timeSheet.StartDate, timeSheet.EndDate) = ParseDateRangeFromFileName(fileName);
+            timeSheet.Period = ParseDateRangeFromFileName(fileName);
             return timeSheet;
         }
 
-        private static (DateTime? starTime, DateTime? endTime) ParseDateRangeFromFileName(string fileName)
+        private static DateRange? ParseDateRangeFromFileName(string fileName)
         {
             var match = Regex.Match(fileName,
                 "^Toggl_projects_([0-9]+-[0-9]+-[0-9]+)_to_([0-9]+-[0-9]+-[0-9]+)");
@@ -42,16 +42,28 @@ namespace ToggleTimeManager.Core
             if (!match.Success)
             {
                 //Cant infer date from file name if the name is not on the default format
-                return (null, null);
+                return null;
             }
 
             var startDateStr = match.Groups[1].Value;
-            DateTime.TryParseExact(startDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var startTime);
+            if (!DateTime.TryParseExact(startDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None,
+                out var parsedStart))
+            {
+                return null;
+            }
 
             var endDateStr = match.Groups[2].Value;
-            DateTime.TryParseExact(endDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var endTime);
+            if (!DateTime.TryParseExact(endDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedEnd))
+            {
+                return null;
+            }
 
-            return (startTime, endTime);
+
+            return new DateRange()
+            {
+                StartDate = parsedStart,
+                EndDate = parsedEnd
+            };
         }
     }
 }

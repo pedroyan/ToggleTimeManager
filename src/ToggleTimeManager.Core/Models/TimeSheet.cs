@@ -6,14 +6,9 @@ namespace ToggleTimeManager.Core.Models
     public class TimeSheet
     {
         /// <summary>
-        /// The start date of the time sheet
+        /// The period of time covered by this time sheet
         /// </summary>
-        public DateTime? StartDate { get; set; }
-
-        /// <summary>
-        /// The end date of the time sheet
-        /// </summary>
-        public DateTime? EndDate { get; set; }
+        public DateRange? Period { get; set; }
 
         /// <summary>
         /// All the time entries contained inside a TimeSheet
