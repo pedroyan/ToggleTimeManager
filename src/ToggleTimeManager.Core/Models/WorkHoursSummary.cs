@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToggleTimeManager.Core.Models
 {
-    public class UserTimeSummary
+    public class WorkHoursSummary
     {
         /// <summary>
         /// The amount of hours worked for the time period
