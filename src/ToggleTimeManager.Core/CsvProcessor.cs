@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ToggleTimeManager.Core.Parsing;
 
 namespace ToggleTimeManager.Core
@@ -15,21 +17,40 @@ namespace ToggleTimeManager.Core
                 throw new ArgumentException("The file path cannot be null or empty", nameof(filePath));
             }
 
-            if (!filePath.EndsWith(".csv"))
+            var fileName = Path.GetFileName(filePath);
+            if (!fileName.EndsWith(".csv"))
             {
                 throw new ArgumentException("The select file is not a CSV");
             }
 
             List<TimeEntry> records = TogglCsvParser.ParseCsv(filePath);
-
-            return new TimeSheet
+            var timeSheet = new TimeSheet
             {
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
                 TimeEntries = records.ToList()
             };
+
+            (timeSheet.StartDate, timeSheet.EndDate) = ParseDateRangeFromFileName(fileName);
+            return timeSheet;
         }
 
-   
+        private static (DateTime? starTime, DateTime? endTime) ParseDateRangeFromFileName(string fileName)
+        {
+            var match = Regex.Match(fileName,
+                "^Toggl_projects_([0-9]+-[0-9]+-[0-9]+)_to_([0-9]+-[0-9]+-[0-9]+)");
+
+            if (!match.Success)
+            {
+                //Cant infer date from file name if the name is not on the default format
+                return (null, null);
+            }
+
+            var startDateStr = match.Groups[1].Value;
+            DateTime.TryParseExact(startDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var startTime);
+
+            var endDateStr = match.Groups[2].Value;
+            DateTime.TryParseExact(endDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var endTime);
+
+            return (startTime, endTime);
+        }
     }
 }

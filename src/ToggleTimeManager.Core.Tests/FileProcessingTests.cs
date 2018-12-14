@@ -10,11 +10,14 @@ namespace ToggleTimeManager.Core.Tests
     public class FileProcessingTests
     {
         [Test]
-        public void SuccessfulProcessingTest()
+        public void SuccessfulProcessedSimpleEntriesSheetTest()
         {
             var resultSheet = CsvProcessor.ProcessCsvFile("TestFiles/Toggl_projects_2018-11-01_to_2018-11-30.csv");
 
             Assert.AreEqual(5, resultSheet.TimeEntries.Count);
+
+            Assert.AreEqual(new DateTime(2018, 11, 01), resultSheet.StartDate);
+            Assert.AreEqual(new DateTime(2018, 11, 30), resultSheet.EndDate);
 
             resultSheet.TimeEntries[0]
                 .AssertRecord("Pedro Company", "CT", new TimeSpan(14, 41, 36));
@@ -26,7 +29,7 @@ namespace ToggleTimeManager.Core.Tests
                 .AssertRecord("Pedro Company", "Game Engine", new TimeSpan(2, 31, 38));
 
             resultSheet.TimeEntries[3]
-                .AssertRecord("Pedro Company", "HiddenProject", new TimeSpan(4,14,24,53));
+                .AssertRecord("Pedro Company", "HiddenProject", new TimeSpan(4, 14, 24, 53));
         }
     }
 }

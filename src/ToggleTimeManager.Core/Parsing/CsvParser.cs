@@ -13,7 +13,6 @@ namespace ToggleTimeManager.Core.Parsing
         {
             using (var reader = File.OpenText(filePath))
             {
-                //TODO: Logic to figure out if this is a detailed time entry or not
                 var csvParser = new CsvReader(reader);
                 csvParser.Configuration.RegisterClassMap<TimeEntryMap>();
                 return csvParser.GetRecords<TimeEntry>().ToList();
