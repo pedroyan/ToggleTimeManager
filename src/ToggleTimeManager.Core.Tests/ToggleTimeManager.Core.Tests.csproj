@@ -12,4 +12,14 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToggleTimeManager.Core\ToggleTimeManager.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestFiles\Toggl_projects_2018-11-01_to_2018-11-30.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
