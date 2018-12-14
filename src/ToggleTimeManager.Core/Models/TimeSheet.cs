@@ -5,6 +5,11 @@ namespace ToggleTimeManager.Core.Models
 {
     public class TimeSheet
     {
+        public TimeSheet()
+        {
+            TimeEntries = new List<TimeEntry>();
+        }
+
         /// <summary>
         /// The period of time covered by this time sheet
         /// </summary>
