@@ -47,7 +47,7 @@ namespace ToggleTimeManager.Core
         /// Gets the number of working days on a <paramref name="period"/>
         /// </summary>
         /// <param name="period">The period being analyzed</param>
-        /// <returns>The amount of thw workdays in the period</returns>
+        /// <returns>The amount of workdays in the period</returns>
         private static int GetWorkingDays(DateRange period)
         {
             int numberDays = (period.EndDate - period.StartDate).Days;

@@ -11,6 +11,11 @@ namespace ToggleTimeManager.Core
 {
     public static class CsvProcessor
     {
+        /// <summary>
+        /// Obtains a <see cref="TimeSheet"/> from a Toggl csv summary file
+        /// </summary>
+        /// <param name="filePath">the path to the csv file</param>
+        /// <returns>The parsed <see cref="TimeSheet"/></returns>
         public static TimeSheet ProcessCsvFile(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
@@ -27,17 +32,17 @@ namespace ToggleTimeManager.Core
             List<TimeEntry> records = TogglCsvParser.ParseCsv(filePath);
             var timeSheet = new TimeSheet
             {
-                TimeEntries = records.ToList()
+                TimeEntries = records.ToList(),
+                Period = ParseDateRangeFromFileName(fileName)
             };
 
-            timeSheet.Period = ParseDateRangeFromFileName(fileName);
             return timeSheet;
         }
 
         private static DateRange? ParseDateRangeFromFileName(string fileName)
         {
             var match = Regex.Match(fileName,
-                "^Toggl_projects_([0-9]+-[0-9]+-[0-9]+)_to_([0-9]+-[0-9]+-[0-9]+)");
+                "^Toggl_projects_([0-9]+-[0-9]+-[0-9]+)_to_([0-9]+-[0-9]+-[0-9]+)\\.csv");
 
             if (!match.Success)
             {

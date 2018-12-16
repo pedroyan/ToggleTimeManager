@@ -33,5 +33,10 @@ namespace ToggleTimeManager.Core.Tests
             resultSheet.TimeEntries[3]
                 .AssertRecord("Pedro Company", "HiddenProject", new TimeSpan(4, 14, 24, 53));
         }
+
+        //TODO: Add tests for invalid file extension
+        //TODO: Add tests for files without the date on them
+        //TODO: Add tests for files with invalid headers
+
     }
 }
