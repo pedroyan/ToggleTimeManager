@@ -7,14 +7,14 @@ namespace ToggleTimeManager.Core.Models
     public class WorkHoursSummary
     {
         /// <summary>
-        /// The amount of hours worked for the time period
+        /// The amount of time worked on the time period
         /// </summary>
-        public TimeSpan WorkedHours { get; set; }
+        public TimeSpan TimeWorked { get; set; }
 
         /// <summary>
-        /// The amount of hours allocated to work
+        /// The amount of time allocated to work on the time period
         /// </summary>
-        public TimeSpan ContractedHours { get; set; }
+        public TimeSpan ExpectedWork { get; set; }
 
         /// <summary>
         /// The period described by this time summary
@@ -22,9 +22,10 @@ namespace ToggleTimeManager.Core.Models
         public DateRange Period { get; set; }
 
         /// <summary>
-        /// The work hours balance
+        /// The time balance of the specified time period. A positive balance
+        /// means the user worked more than the expected
         /// </summary>
-        public TimeSpan WorkHoursBalance => WorkedHours - ContractedHours;
+        public TimeSpan WorkTimeBalance => TimeWorked - ExpectedWork;
 
     }
 }

@@ -16,7 +16,7 @@ namespace ToggleTimeManager.Core
         /// has no period assigned to it</exception>
         /// <param name="workDayDuration">The duration of the workday stipulated on the contract</param>
         /// <param name="timeSheet">The time sheet to be evaluated</param>
-        public WorkHoursSummary CalculateHoursSummary(TimeSpan workDayDuration, TimeSheet timeSheet)
+        public static WorkHoursSummary CalculateHoursSummary(TimeSpan workDayDuration, TimeSheet timeSheet)
         {
             if (timeSheet == null) throw new ArgumentNullException(nameof(timeSheet), "A time sheet instance is needed to calculate the summary");
 
@@ -37,9 +37,9 @@ namespace ToggleTimeManager.Core
 
             return new WorkHoursSummary()
             {
-                ContractedHours = workDays * workDayDuration,
+                ExpectedWork = workDays * workDayDuration,
                 Period = timeSheet.Period.Value,
-                WorkedHours = totalWorkHours
+                TimeWorked = totalWorkHours
             };
         }
 

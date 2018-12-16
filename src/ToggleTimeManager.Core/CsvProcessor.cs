@@ -63,12 +63,13 @@ namespace ToggleTimeManager.Core
                 return null;
             }
 
-
-            return new DateRange()
+            if (parsedStart > parsedEnd)
             {
-                StartDate = parsedStart,
-                EndDate = parsedEnd
-            };
+                //The date on the csv file is invalid, therefore null is returned
+                return null;
+            }
+
+            return new DateRange(parsedStart, parsedEnd);
         }
     }
 }
