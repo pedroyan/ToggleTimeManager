@@ -62,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Services\IPageNavigationService.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
@@ -89,7 +90,7 @@
     </Compile>
     <Compile Include="Services\FilePicker.cs" />
     <Compile Include="Services\IFilePicker.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BoundObject.cs" />
     <Compile Include="Helpers\ButtonCommand.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

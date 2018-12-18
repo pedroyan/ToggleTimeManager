@@ -9,11 +9,10 @@ using TogglTimeManager.Views;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class FileSelectionViewModel : BaseViewModel, INotifyPropertyChanged
+    public class FileSelectionViewModel : BoundObject, INotifyPropertyChanged
     {
         private readonly IFilePicker _filePicker;
         private readonly IPageNavigationService _navigationService;
-        //TODO: Implement filtering for csv only (https://www.wpf-tutorial.com/dialogs/the-openfiledialog/)
 
         public FileSelectionViewModel(IFilePicker filePicker, IPageNavigationService navigationService)
         {
@@ -44,10 +43,8 @@ namespace TogglTimeManager.ViewModels
                 if (value == _errorMessage) return;
                 _errorMessage = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowError));
             }
         }
-        public bool ShowError => !string.IsNullOrEmpty(ErrorMessage);
 
         private ICommand _pickFileCommand;
         public ICommand PickFileCommand => _pickFileCommand ?? (_pickFileCommand = new ButtonCommand(PickFile));
