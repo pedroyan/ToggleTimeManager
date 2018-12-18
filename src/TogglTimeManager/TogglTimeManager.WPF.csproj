@@ -123,5 +123,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TogglTimeManager.Core\TogglTimeManager.Core.csproj">
+      <Project>{39EFF561-F6B0-43A3-B108-AD74615E696C}</Project>
+      <Name>TogglTimeManager.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

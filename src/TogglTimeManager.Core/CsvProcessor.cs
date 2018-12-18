@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using ToggleTimeManager.Core.Models;
 using ToggleTimeManager.Core.Parsing;
+using TogglTimeManager.Core.Parsing;
 
 namespace ToggleTimeManager.Core
 {

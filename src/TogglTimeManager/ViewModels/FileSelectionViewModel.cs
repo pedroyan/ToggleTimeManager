@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
+using ToggleTimeManager.Core;
 using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.Views;
@@ -67,7 +68,21 @@ namespace TogglTimeManager.ViewModels
 
         private void ProcessFile()
         {
+            try
+            {
+                var timeSheet = CsvProcessor.ProcessCsvFile(TextBox);
+                if (!timeSheet.Period.HasValue)
+                {
+                    ErrorMessage = "Could not parse period from CSV";
+                }
             _navigationService.Navigate(new MainDashboard());
+
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+     
         }
     }
 }

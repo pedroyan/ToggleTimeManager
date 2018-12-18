@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using CsvHelper;
 using ToggleTimeManager.Core.Models;
+using ToggleTimeManager.Core.Parsing;
 
-namespace ToggleTimeManager.Core.Parsing
+namespace TogglTimeManager.Core.Parsing
 {
     internal static class TogglCsvParser
     {

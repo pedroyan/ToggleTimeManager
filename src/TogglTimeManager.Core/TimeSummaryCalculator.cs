@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using ToggleTimeManager.Core.Models;
+using TogglTimeManager.Core.Helpers;
 
 namespace ToggleTimeManager.Core
 {
@@ -37,7 +38,7 @@ namespace ToggleTimeManager.Core
 
             return new WorkHoursSummary()
             {
-                //ExpectedWork = workDays * workDayDuration,
+                ExpectedWork = workDayDuration.Multiply(workDays),
                 Period = timeSheet.Period.Value,
                 TimeWorked = totalWorkHours
             };
