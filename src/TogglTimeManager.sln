@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TogglTimeManager.WPF", "Tog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToggleTimeManager.Core.Tests", "ToggleTimeManager.Core.Tests\ToggleTimeManager.Core.Tests.csproj", "{45BC3F49-FCA6-4CFA-BFF8-D9141860666B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglTimeManager.Core", "TogglTimeManager.CoreS\TogglTimeManager.Core.csproj", "{39EFF561-F6B0-43A3-B108-AD74615E696C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TogglTimeManager.Core", "TogglTimeManager.Core\TogglTimeManager.Core.csproj", "{39EFF561-F6B0-43A3-B108-AD74615E696C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
