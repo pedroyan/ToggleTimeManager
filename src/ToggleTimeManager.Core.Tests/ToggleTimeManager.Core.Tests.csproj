@@ -17,7 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestFiles\InvalidTimeFormat.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\MyProjects.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\InvalidHeaders.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="TestFiles\Toggl_projects_2018-11-01_to_2018-11-30.csv">

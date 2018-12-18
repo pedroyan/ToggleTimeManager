@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using CsvHelper;
 using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using NUnit.Framework;
 using TogglTimeManager.Core;
+using TogglTimeManager.Core.Exceptions;
 
 namespace ToggleTimeManager.Core.Tests
 {
@@ -53,7 +55,7 @@ namespace ToggleTimeManager.Core.Tests
 
             Assert.AreEqual(5, resultSheet.TimeEntries.Count);
 
-            Debug.Assert(resultSheet.Period == null, "resultSheet.Period == null");
+            Assert.IsNotNull(resultSheet.Period == null, "resultSheet.Period == null");
 
             resultSheet.TimeEntries[0]
                 .AssertRecord("Pedro Company", "CT", new TimeSpan(14, 41, 36));
@@ -68,6 +70,45 @@ namespace ToggleTimeManager.Core.Tests
                 .AssertRecord("Pedro Company", "HiddenProject", new TimeSpan(4, 14, 24, 53));
         }
 
-        //TODO: Add tests for files with invalid headers
+        [Test]
+        public void ShouldThrowInvalidHeaders()
+        {
+            try
+            {
+                CsvProcessor.ProcessCsvFile("TestFiles/InvalidHeaders.csv");
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(e.Message.Contains("Invalid"));
+                Assert.IsTrue(e.Message.Contains("Header"));
+                Assert.IsTrue(e.InnerException is HeaderValidationException);
+                return;
+            }
+
+            Assert.Fail("Exception should have been thrown");
+        }
+
+        [Test]
+        public void ShouldThrowInvalidCell()
+        {
+            try
+            {
+                CsvProcessor.ProcessCsvFile("TestFiles/InvalidTimeFormat.csv");
+            }
+            catch (Exception e)
+            {
+
+                if (!(e is InvalidCellException ex))
+                {
+                    throw new AssertionException($"Exception should be of type InvalidCellException. Current type {e.GetType()}");
+                }
+
+                Assert.AreEqual(2, ex.Line);
+                Assert.AreEqual("carne", ex.RawValue);
+                return;
+            }
+
+            Assert.Fail("Exception should have been thrown");
+        }
     }
 }
