@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using CsvHelper;
 using TogglTimeManager.Core.Models;
 using TogglTimeManager.Core.Parsing;
+using TogglTimeManager.Core.Exceptions;
 
 namespace TogglTimeManager.Core
 {
@@ -16,6 +17,7 @@ namespace TogglTimeManager.Core
         /// Obtains a <see cref="TimeSheet"/> from a Toggl csv summary file
         /// </summary>
         /// <param name="filePath">the path to the csv file</param>
+        /// <exception cref="InvalidCellException">Thrown when a cell of the csv is not formatted properly</exception>
         /// <returns>The parsed <see cref="TimeSheet"/></returns>
         public static TimeSheet ProcessCsvFile(string filePath)
         {
@@ -59,9 +61,9 @@ namespace TogglTimeManager.Core
             catch (ReaderException e)
             {
                 //User should know if the error was caused by a invalid field
-                if (e.InnerException is FormatException) throw e.InnerException;
+                if (e.InnerException is InvalidCellException) throw e.InnerException;
 
-                throw e;
+                throw;
             }
         }
 
