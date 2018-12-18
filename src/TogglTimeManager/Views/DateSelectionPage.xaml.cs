@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Autofac;
+using Autofac.Core;
 using TogglTimeManager.Core.Models;
+using TogglTimeManager.ViewModels;
 
 namespace TogglTimeManager.Views
 {
@@ -24,6 +27,11 @@ namespace TogglTimeManager.Views
         public DateSelectionPage(TimeSheet timeSheet)
         {
             InitializeComponent();
+            DataContext =
+                IoC.Resolve<DateSelectionViewModel>(new Parameter[]
+                {
+                    new NamedParameter("timeSheet", timeSheet)
+                });
         }
     }
 }

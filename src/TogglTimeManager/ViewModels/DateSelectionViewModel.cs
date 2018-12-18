@@ -18,5 +18,8 @@ namespace TogglTimeManager.ViewModels
             _timeSheet = timeSheet;
             _navigationService = navigationService;
         }
+
+        //TODO: Implement binded properties that handles the date input
+        //TODO: Implement implement date range validation before attributing it to the time sheet
     }
 }
