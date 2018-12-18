@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
 using TogglTimeManager.Helpers;
@@ -7,7 +8,7 @@ using TogglTimeManager.Views;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class FileSelectionViewModel : BaseViewModel
+    public class FileSelectionViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private readonly IFilePicker _filePicker;
         private readonly IPageNavigationService _navigationService;
@@ -32,6 +33,20 @@ namespace TogglTimeManager.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                if (value == _errorMessage) return;
+                _errorMessage = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowError));
+            }
+        }
+        public bool ShowError => !string.IsNullOrEmpty(ErrorMessage);
 
         private ICommand _pickFileCommand;
         public ICommand PickFileCommand => _pickFileCommand ?? (_pickFileCommand = new ButtonCommand(PickFile));

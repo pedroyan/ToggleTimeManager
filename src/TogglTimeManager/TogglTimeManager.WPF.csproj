@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Services\IPageNavigationService.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
@@ -122,6 +123,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ToggleTimeManager.Core\ToggleTimeManager.Core.csproj">
+      <Project>{7cfb693f-7bf4-482e-9b0f-3b340bfdfc9c}</Project>
+      <Name>ToggleTimeManager.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

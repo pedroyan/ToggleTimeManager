@@ -5,16 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TogglTimeManager.Views"
       xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
+      xmlns:converters="clr-namespace:TogglTimeManager.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance viewModels:FileSelectionViewModel}"
       Title="FileSelectionPage">
-
+<Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+</Page.Resources>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Label Content="Path:" Height="24" Width="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <TextBox Text="{Binding TextBox}" Height="24" Width="300" VerticalContentAlignment="Center"/>
-            <Button Content="Select" HorizontalAlignment="Center" Height="24" VerticalAlignment="Bottom" Width="90" Command="{Binding PickFileCommand}" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Path:" Height="24" Width="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox Text="{Binding TextBox}" Height="24" Width="300" VerticalContentAlignment="Center"/>
+                <Button Content="Select" HorizontalAlignment="Center" Height="24" VerticalAlignment="Bottom" Width="90" Command="{Binding PickFileCommand}" />
+            </StackPanel>
+            <Label Content="{Binding ErrorMessage}" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="Red" 
+                   Visibility="{Binding ShowError, Converter={StaticResource BoolToVisibilityConverter}}"/>
         </StackPanel>
         <Button Content="Process" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="96" Margin="0,0,0,50" Command="{Binding ProcessCommand}"/>
     </Grid>

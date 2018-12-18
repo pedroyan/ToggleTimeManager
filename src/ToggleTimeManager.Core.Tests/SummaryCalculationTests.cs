@@ -14,6 +14,7 @@ namespace ToggleTimeManager.Core.Tests
         {
             var timeSheet = new TimeSheet()
             {
+                //7 business days
                 Period = new DateRange(new DateTime(2018, 12, 7), new DateTime(2018, 12, 17)),
                 TimeEntries = new List<TimeEntry>()
                 {
