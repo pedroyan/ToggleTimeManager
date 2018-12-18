@@ -73,15 +73,11 @@ namespace TogglTimeManager.ViewModels
                 var timeSheet = CsvProcessor.ProcessCsvFile(TextBox);
                 if (!timeSheet.Period.HasValue)
                 {
-                    ErrorMessage = "Could not parse period from CSV";
-                }
-                else
-                {
-                    //_navigationService.Navigate(new MainDashboard());
-                    ErrorMessage =
-                        "This is one big error message to investigate why the layout is acting weird when this message is big";
+                    _navigationService.Navigate(new DateSelectionPage(timeSheet));
+                    return;
                 }
 
+                _navigationService.Navigate(new MainDashboard());
             }
             catch (Exception ex)
             {

@@ -9,15 +9,15 @@ using System.Windows.Data;
 
 namespace TogglTimeManager.Converters
 {
-    public class BoolToVisibilityConverter : IValueConverter
+    public class BoolToVisibilityConverter : BaseConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var isVisible = (bool) value;
             return isVisible ? Visibility.Visible : Visibility.Hidden;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return ((Visibility) value) == Visibility.Visible;
         }

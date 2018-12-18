@@ -37,6 +37,9 @@ namespace TogglTimeManager
 
             var scope = builder.Build();
             IoC.SetScope(scope);
+
+            //TODO: Create a view orchestrator that will spawn new windows and refresh the navigation service when needed. On the builder, we will register a delegate
+            //that belongs to this orchestrator so he can 
         }
     }
 }

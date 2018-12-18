@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
-	<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -60,16 +60,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Services\IPageNavigationService.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
+    <Compile Include="ViewModels\DateSelectionViewModel.cs" />
+    <Compile Include="Views\DateSelectionPage.xaml.cs">
+      <DependentUpon>DateSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FileSelectionPage.xaml.cs">
       <DependentUpon>FileSelectionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainDashboard.xaml.cs">
       <DependentUpon>MainDashboard.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DateSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
