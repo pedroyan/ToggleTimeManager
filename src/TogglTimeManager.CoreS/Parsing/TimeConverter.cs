@@ -22,7 +22,7 @@ namespace ToggleTimeManager.Core.Parsing
                 return TimeSpan.Zero;
             }
 
-            var splitTime = text.Split(":");
+            var splitTime = text.Split(':');
 
             if (splitTime.Length != 3)
             {

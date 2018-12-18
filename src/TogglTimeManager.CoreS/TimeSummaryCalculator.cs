@@ -37,7 +37,7 @@ namespace ToggleTimeManager.Core
 
             return new WorkHoursSummary()
             {
-                ExpectedWork = workDays * workDayDuration,
+                //ExpectedWork = workDays * workDayDuration,
                 Period = timeSheet.Period.Value,
                 TimeWorked = totalWorkHours
             };
