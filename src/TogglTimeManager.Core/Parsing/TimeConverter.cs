@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace ToggleTimeManager.Core.Parsing
+namespace TogglTimeManager.Core.Parsing
 {
     public class TimeConverter : ITypeConverter
     {

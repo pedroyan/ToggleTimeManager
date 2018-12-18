@@ -4,11 +4,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ToggleTimeManager.Core.Models;
-using ToggleTimeManager.Core.Parsing;
+using TogglTimeManager.Core.Models;
 using TogglTimeManager.Core.Parsing;
 
-namespace ToggleTimeManager.Core
+namespace TogglTimeManager.Core
 {
     public static class CsvProcessor
     {

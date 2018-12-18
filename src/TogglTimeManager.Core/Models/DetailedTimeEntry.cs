@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ToggleTimeManager.Core.Models
+namespace TogglTimeManager.Core.Models
 {
     public class DetailedTimeEntry : TimeEntry
     {

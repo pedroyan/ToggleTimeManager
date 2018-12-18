@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using ToggleTimeManager.Core.Models;
 using TogglTimeManager.Core.Helpers;
+using TogglTimeManager.Core.Models;
 
-namespace ToggleTimeManager.Core
+namespace TogglTimeManager.Core
 {
     public class TimeSummaryCalculator
     {

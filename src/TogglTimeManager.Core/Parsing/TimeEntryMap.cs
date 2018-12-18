@@ -1,7 +1,7 @@
 ﻿using CsvHelper.Configuration;
-using ToggleTimeManager.Core.Models;
+using TogglTimeManager.Core.Models;
 
-namespace ToggleTimeManager.Core.Parsing
+namespace TogglTimeManager.Core.Parsing
 {
     public sealed class TimeEntryMap : ClassMap<TimeEntry>
     {

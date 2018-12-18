@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
+using TogglTimeManager.Core;
 
 namespace ToggleTimeManager.Core.Tests
 {

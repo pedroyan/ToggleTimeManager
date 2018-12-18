@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ToggleTimeManager.Core.Models
+namespace TogglTimeManager.Core.Models
 {
     public class TimeSheet
     {

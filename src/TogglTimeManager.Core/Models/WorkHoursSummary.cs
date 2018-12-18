@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ToggleTimeManager.Core.Models
+namespace TogglTimeManager.Core.Models
 {
     public class WorkHoursSummary
     {

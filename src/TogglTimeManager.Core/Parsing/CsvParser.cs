@@ -2,8 +2,7 @@
 using System.IO;
 using System.Linq;
 using CsvHelper;
-using ToggleTimeManager.Core.Models;
-using ToggleTimeManager.Core.Parsing;
+using TogglTimeManager.Core.Models;
 
 namespace TogglTimeManager.Core.Parsing
 {

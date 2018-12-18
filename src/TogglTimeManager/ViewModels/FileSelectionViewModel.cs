@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
-using ToggleTimeManager.Core;
+using TogglTimeManager.Core;
 using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.Views;
