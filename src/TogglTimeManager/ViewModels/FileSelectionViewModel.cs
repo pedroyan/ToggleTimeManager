@@ -60,6 +60,7 @@ namespace TogglTimeManager.ViewModels
             if (!string.IsNullOrEmpty(filePath))
             {
                 TextBox = filePath;
+                ProcessFile();
             }
         }
 

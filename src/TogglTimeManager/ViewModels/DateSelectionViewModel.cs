@@ -25,8 +25,8 @@ namespace TogglTimeManager.ViewModels
 
         #region Bindable properties
 
-        private DateTime _from;
-        public DateTime From
+        private DateTime? _from;
+        public DateTime? From
         {
             get => _from;
             set
@@ -37,8 +37,8 @@ namespace TogglTimeManager.ViewModels
             }
         }
 
-        private DateTime _to;
-        public DateTime To
+        private DateTime? _to;
+        public DateTime? To
         {
             get => _to;
             set
