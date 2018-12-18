@@ -75,14 +75,19 @@ namespace TogglTimeManager.ViewModels
                 {
                     ErrorMessage = "Could not parse period from CSV";
                 }
-            _navigationService.Navigate(new MainDashboard());
+                else
+                {
+                    //_navigationService.Navigate(new MainDashboard());
+                    ErrorMessage =
+                        "This is one big error message to investigate why the layout is acting weird when this message is big";
+                }
 
             }
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
             }
-     
+
         }
     }
 }
