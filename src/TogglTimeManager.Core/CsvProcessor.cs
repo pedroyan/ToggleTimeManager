@@ -70,7 +70,7 @@ namespace TogglTimeManager.Core
         private static DateRange? ParseDateRangeFromFileName(string fileName)
         {
             var match = Regex.Match(fileName,
-                "^Toggl_projects_([0-9]+-[0-9]+-[0-9]+)_to_([0-9]+-[0-9]+-[0-9]+)\\.csv");
+                "^Toggl_projects_([0-9]+-[0-9]+-[0-9]+)_to_([0-9]+-[0-9]+-[0-9]+)(.*)\\.csv");
 
             if (!match.Success)
             {

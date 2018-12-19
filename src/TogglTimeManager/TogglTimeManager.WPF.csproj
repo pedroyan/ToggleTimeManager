@@ -73,9 +73,6 @@
     <Compile Include="Views\FileSelectionPage.xaml.cs">
       <DependentUpon>FileSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainDashboard.xaml.cs">
-      <DependentUpon>MainDashboard.xaml</DependentUpon>
-    </Compile>
     <Page Include="Views\DateSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,10 +94,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\FileSelectionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

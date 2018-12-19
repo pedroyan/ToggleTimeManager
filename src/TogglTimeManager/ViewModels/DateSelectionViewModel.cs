@@ -21,12 +21,14 @@ namespace TogglTimeManager.ViewModels
         {
             _timeSheet = timeSheet;
             _navigationService = navigationService;
+            From = DateTime.Today.Date;
+            To = From;
         }
 
         #region Bindable properties
 
-        private DateTime? _from;
-        public DateTime? From
+        private DateTime _from;
+        public DateTime From
         {
             get => _from;
             set
@@ -37,8 +39,8 @@ namespace TogglTimeManager.ViewModels
             }
         }
 
-        private DateTime? _to;
-        public DateTime? To
+        private DateTime _to;
+        public DateTime To
         {
             get => _to;
             set
@@ -72,12 +74,28 @@ namespace TogglTimeManager.ViewModels
 
         private void Next()
         {
+            if (!ValidateDates())
+            {
+                return;
+            }
 
+            _timeSheet.Period = new DateRange(From, To);
         }
 
         private void GoBack()
         {
             _navigationService.GoBack();
+        }
+
+        private bool ValidateDates()
+        {
+            if (From > To)
+            {
+                ErrorMessage = "Invalid range. Please ensure that the end date comes after the initial date";
+                return false;
+            }
+
+            return true;
         }
     }
 }

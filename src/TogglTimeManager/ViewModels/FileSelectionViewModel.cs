@@ -75,7 +75,8 @@ namespace TogglTimeManager.ViewModels
                     return;
                 }
 
-                _navigationService.Navigate(new MainDashboard());
+                //TODO: Use the window orchestrator class to request a new window, which is the dashboard window
+                //_navigationService.Navigate(new MainDashboard());
             }
             catch (Exception ex)
             {

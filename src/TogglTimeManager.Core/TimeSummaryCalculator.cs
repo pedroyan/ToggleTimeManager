@@ -77,8 +77,8 @@ namespace TogglTimeManager.Core
             var dateIterator = startDate;
             var targetDate = startDate.AddDays(daysOffset);
 
-            //This loop is fine since on the worst case scenario it will repeat itself only 6 times,
-            //therefore it's time complexity is O(1)
+            //This loop is fine since on the worst case scenario it will repeat itself only 6 times
+            //(a constant maximum), therefore it's time complexity is O(1)
             var workdays = 0;
             while (dateIterator <= targetDate)
             {

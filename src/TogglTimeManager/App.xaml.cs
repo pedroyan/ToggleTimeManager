@@ -40,6 +40,8 @@ namespace TogglTimeManager
 
             //TODO: Create a view orchestrator that will spawn new windows and refresh the navigation service when needed. On the builder, we will register a delegate
             //that belongs to this orchestrator so he can 
+
+            //Dashboard idea: https://social.msdn.microsoft.com/Forums/vstudio/en-US/c7edafe9-d4ac-4bd8-ac25-f4482cfdaa75/dockpanel-stackpanel-or-grid?forum=wpf
         }
     }
 }
