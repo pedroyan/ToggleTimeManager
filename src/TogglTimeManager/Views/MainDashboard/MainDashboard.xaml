@@ -34,9 +34,15 @@
             <!--This will become a frame in the future
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>-->
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"  Margin="0,5,0,5">
                     <Label FontWeight="Bold" Content="Time Worked:"/>
                     <TextBox IsEnabled="False" Text="{Binding TimeWorked, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
+                    <Label FontWeight="Bold" Content="Expected Work:" Margin="10,0,0,0"/>
+                    <TextBox IsEnabled="False" Text="{Binding ExpectedWork, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"  Margin="0,5,0,5" >
+                    <Label FontWeight="Bold" Content="Work Time Balance:"/>
+                    <TextBox IsEnabled="False" Text="{Binding WorkTimeBalance, Mode=OneWay}" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
                 </StackPanel>
             </StackPanel>
         </Grid>

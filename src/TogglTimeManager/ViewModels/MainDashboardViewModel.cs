@@ -18,5 +18,9 @@ namespace TogglTimeManager.ViewModels
         }
 
         public string TimeWorked => _summary.TimeWorked.ToHoursString();
+
+        public string ExpectedWork => _summary.ExpectedWork.ToHoursString();
+
+        public string WorkTimeBalance => _summary.WorkTimeBalance.ToHoursString();
     }
 }

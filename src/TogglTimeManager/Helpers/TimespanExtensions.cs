@@ -10,9 +10,10 @@ namespace TogglTimeManager.Helpers
     {
         public static string ToHoursString(this TimeSpan timeSpan)
         {
-            var minus = timeSpan < TimeSpan.Zero ? "- " : "";
-            var hours = timeSpan.Days * 24 + timeSpan.Hours;
-            return $"{minus}{hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            var absolute = timeSpan.Duration();
+            var minus = timeSpan < TimeSpan.Zero ? "-" : "";
+            var hours = absolute.Days * 24 + absolute.Hours;
+            return $"{minus}{hours:D2}:{absolute.Minutes:D2}:{absolute.Seconds:D2}";
         }
     }
 }
