@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Autofac;
-using Autofac.Core;
-using TogglTimeManager.Core.Models;
-using TogglTimeManager.Services;
-using TogglTimeManager.ViewModels;
 
-namespace TogglTimeManager.Views
+namespace TogglTimeManager.Views.MainDashboard
 {
     /// <summary>
-    /// Interaction logic for DateSelectionPage.xaml
+    /// Interaction logic for MainDashboard.xaml
     /// </summary>
-    public partial class DateSelectionPage : Page
+    public partial class MainDashboard : Window
     {
-        public DateSelectionPage(DateRangeSelectionViewModel viewModel)
+        public MainDashboard()
         {
             InitializeComponent();
-            DataContext = viewModel;
         }
     }
 }

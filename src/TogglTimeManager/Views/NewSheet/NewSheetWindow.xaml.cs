@@ -1,9 +1,8 @@
-﻿using System.Linq.Expressions;
-using System.Windows;
+﻿using System.Windows;
 using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 
-namespace TogglTimeManager.Views
+namespace TogglTimeManager.Views.NewSheet
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

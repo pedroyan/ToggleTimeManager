@@ -19,6 +19,9 @@ namespace TogglTimeManager.ViewModels
 
         #region Events
 
+        /// <summary>
+        /// Raised whenever a time sheet is successfully parsed
+        /// </summary>
         public event EventHandler<TimeSheet> TimeSheetParsed;
         protected virtual void OnTimeSheetParsed(TimeSheet e)
         {
@@ -81,14 +84,6 @@ namespace TogglTimeManager.ViewModels
             try
             {
                 var timeSheet = CsvParser.ParseCsvFile(TextBox);
-                //if (!timeSheet.Period.HasValue)
-                //{
-                //    //_navigationService.Navigate(new DateSelectionPage(timeSheet, _navigationService));
-                //    return;
-                //}
-
-                ////TODO: Use the window orchestrator class to request a new window, which is the dashboard window
-                ////_navigationService.Navigate(new MainDashboard());
                 OnTimeSheetParsed(timeSheet);
             }
             catch (Exception ex)

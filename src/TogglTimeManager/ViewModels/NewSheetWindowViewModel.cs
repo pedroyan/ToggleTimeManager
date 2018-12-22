@@ -7,6 +7,7 @@ using TogglTimeManager.Core.Models;
 using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.Views;
+using TogglTimeManager.Views.NewSheet;
 
 namespace TogglTimeManager.ViewModels
 {
@@ -23,6 +24,9 @@ namespace TogglTimeManager.ViewModels
         public FileSelectionViewModel FileSelectionViewModel { get; }
         public DateRangeSelectionViewModel DateSelectionViewModel { get; private set; }
 
+        /// <summary>
+        /// Raised when the workflow of this window is completed and the <see cref="TimeSheet"/> is completely filled
+        /// </summary>
         public event EventHandler<TimeSheet> TimeSheetCompleted;
         protected virtual void OnTimeSheetCompleted(TimeSheet e)
         {

@@ -67,17 +67,24 @@
     <Compile Include="Services\PageNavigationService.cs" />
     <Compile Include="ViewModels\DateRangeSelectionViewModel.cs" />
     <Compile Include="ViewModels\NewSheetWindowViewModel.cs" />
-    <Compile Include="Views\DateSelectionPage.xaml.cs">
+    <Compile Include="Views\MainDashboard\MainDashboard.xaml.cs">
+      <DependentUpon>MainDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewSheet\DateSelectionPage.xaml.cs">
       <DependentUpon>DateSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FileSelectionPage.xaml.cs">
+    <Compile Include="Views\NewSheet\FileSelectionPage.xaml.cs">
       <DependentUpon>FileSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\DateSelectionPage.xaml">
+    <Page Include="Views\MainDashboard\MainDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewSheetWindow.xaml">
+    <Page Include="Views\NewSheet\DateSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewSheet\NewSheetWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -88,11 +95,11 @@
     <Compile Include="Services\FilePicker.cs" />
     <Compile Include="ViewModels\BoundObject.cs" />
     <Compile Include="Helpers\ButtonCommand.cs" />
-    <Compile Include="Views\NewSheetWindow.xaml.cs">
+    <Compile Include="Views\NewSheet\NewSheetWindow.xaml.cs">
       <DependentUpon>NewSheetWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\FileSelectionPage.xaml">
+    <Page Include="Views\NewSheet\FileSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,5 +139,6 @@
       <Name>TogglTimeManager.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
