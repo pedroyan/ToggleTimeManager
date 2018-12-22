@@ -35,6 +35,7 @@ namespace TogglTimeManager.Core
 
             return new WorkHoursSummary()
             {
+                WorkDayDuration = workDayDuration,
                 PlannedWork = workDayDuration.Multiply(workDays),
                 Period = timeSheet.Period.Value,
                 TimeWorked = totalWorkHours

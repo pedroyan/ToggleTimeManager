@@ -13,10 +13,12 @@ namespace TogglTimeManager.ViewModels
     {
         private readonly WorkHoursSummary _summary;
 
-        public MainDashboardViewModel(WorkHoursSummary summary, TimeSpan workdayDuration)
+        public MainDashboardViewModel(WorkHoursSummary summary)
         {
             _summary = summary ?? throw new ArgumentNullException(nameof(summary), "Summary cannot be null");
         }
+
+        #region Binded Properties
 
         public string TimeWorked => _summary.TimeWorked.ToHoursString();
 
@@ -30,7 +32,7 @@ namespace TogglTimeManager.ViewModels
         {
             get
             {
-                
+
                 if (_summary.WorkTimeBalance == TimeSpan.Zero)
                 {
                     return new SolidColorBrush(Colors.Black);
@@ -44,5 +46,8 @@ namespace TogglTimeManager.ViewModels
                 return new SolidColorBrush(Colors.Red);
             }
         }
+
+        #endregion
+
     }
 }

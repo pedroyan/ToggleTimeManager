@@ -28,9 +28,12 @@ namespace TogglTimeManager
 
             var assembly = Assembly.GetExecutingAssembly();
 
+            builder.RegisterInstance(new UserRepository()).As<IUserRepository>().SingleInstance();
+
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => t.Namespace == typeof(IFilePicker).Namespace)
                 .AsImplementedInterfaces();
+
 
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => t.Namespace == typeof(FileSelectionViewModel).Namespace);

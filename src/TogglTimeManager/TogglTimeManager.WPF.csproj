@@ -66,6 +66,8 @@
     <Compile Include="Helpers\TimespanExtensions.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
+    <Compile Include="Services\UserStorageService.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="ViewModels\DateRangeSelectionViewModel.cs" />
     <Compile Include="ViewModels\MainDashboardViewModel.cs" />
     <Compile Include="ViewModels\NewSheetWindowViewModel.cs" />
@@ -146,6 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\beach.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

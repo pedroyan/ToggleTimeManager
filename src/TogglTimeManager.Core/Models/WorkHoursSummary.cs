@@ -5,6 +5,11 @@ namespace TogglTimeManager.Core.Models
     public class WorkHoursSummary
     {
         /// <summary>
+        /// The amount of work planned per day
+        /// </summary>
+        public TimeSpan WorkDayDuration { get; set; }
+
+        /// <summary>
         /// The amount of time worked on the time period
         /// </summary>
         public TimeSpan TimeWorked { get; set; }
