@@ -8,9 +8,9 @@ namespace TogglTimeManager.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewSheetWindow : Window
     {
-        public MainWindow()
+        public NewSheetWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
@@ -19,7 +19,7 @@ namespace TogglTimeManager.Views
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var navigationService = new PageNavigationService(MainFrame.NavigationService);
-            navigationService.Navigate(new FileSelectionPage(navigationService));
+            DataContext = new NewSheetWindowViewModel(navigationService);
         }
     }
 }

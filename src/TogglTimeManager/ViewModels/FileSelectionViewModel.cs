@@ -3,21 +3,33 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
 using TogglTimeManager.Core;
+using TogglTimeManager.Core.Models;
 using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.Views;
 
 namespace TogglTimeManager.ViewModels
 {
+    /// <summary>
+    /// View model responsible for handling the file selection
+    /// </summary>
     public class FileSelectionViewModel : BoundObject
     {
         private readonly IFilePicker _filePicker;
-        private readonly IPageNavigationService _navigationService;
 
-        public FileSelectionViewModel(IFilePicker filePicker, IPageNavigationService navigationService)
+        #region Events
+
+        public event EventHandler<TimeSheet> TimeSheetParsed;
+        protected virtual void OnTimeSheetParsed(TimeSheet e)
+        {
+            TimeSheetParsed?.Invoke(this, e);
+        }
+
+        #endregion
+
+        public FileSelectionViewModel(IFilePicker filePicker)
         {
             _filePicker = filePicker;
-            _navigationService = navigationService;
         }
 
         #region Binded properties
@@ -50,7 +62,7 @@ namespace TogglTimeManager.ViewModels
         public ICommand PickFileCommand => _pickFileCommand ?? (_pickFileCommand = new ButtonCommand(PickFile));
 
         private ICommand _processCommand;
-        public ICommand ProcessCommand => _processCommand ?? (_processCommand = new ButtonCommand(ProcessFile));
+        public ICommand ProcessCommand => _processCommand ?? (_processCommand = new ButtonCommand(() => ProcessFile(TextBox)));
 
         #endregion
 
@@ -60,29 +72,29 @@ namespace TogglTimeManager.ViewModels
             if (!string.IsNullOrEmpty(filePath))
             {
                 TextBox = filePath;
-                ProcessFile();
+                ProcessFile(TextBox);
             }
         }
 
-        private void ProcessFile()
+        private void ProcessFile(string textBox)
         {
             try
             {
-                var timeSheet = CsvProcessor.ProcessCsvFile(TextBox);
-                if (!timeSheet.Period.HasValue)
-                {
-                    _navigationService.Navigate(new DateSelectionPage(timeSheet, _navigationService));
-                    return;
-                }
+                var timeSheet = CsvParser.ParseCsvFile(TextBox);
+                //if (!timeSheet.Period.HasValue)
+                //{
+                //    //_navigationService.Navigate(new DateSelectionPage(timeSheet, _navigationService));
+                //    return;
+                //}
 
-                //TODO: Use the window orchestrator class to request a new window, which is the dashboard window
-                //_navigationService.Navigate(new MainDashboard());
+                ////TODO: Use the window orchestrator class to request a new window, which is the dashboard window
+                ////_navigationService.Navigate(new MainDashboard());
+                OnTimeSheetParsed(timeSheet);
             }
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
             }
-
         }
     }
 }

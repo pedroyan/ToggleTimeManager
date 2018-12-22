@@ -11,7 +11,7 @@ using TogglTimeManager.Core.Exceptions;
 
 namespace TogglTimeManager.Core
 {
-    public static class CsvProcessor
+    public static class CsvParser
     {
         /// <summary>
         /// Obtains a <see cref="TimeSheet"/> from a Toggl csv summary file
@@ -19,7 +19,7 @@ namespace TogglTimeManager.Core
         /// <param name="filePath">the path to the csv file</param>
         /// <exception cref="InvalidCellException">Thrown when a cell of the csv is not formatted properly</exception>
         /// <returns>The parsed <see cref="TimeSheet"/></returns>
-        public static TimeSheet ProcessCsvFile(string filePath)
+        public static TimeSheet ParseCsvFile(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
             {

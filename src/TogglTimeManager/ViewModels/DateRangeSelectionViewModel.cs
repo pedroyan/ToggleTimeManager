@@ -12,17 +12,29 @@ using TogglTimeManager.Services;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class DateSelectionViewModel : BoundObject
+    /// <summary>
+    /// View model responsible for handling the date range selection
+    /// </summary>
+    public class DateRangeSelectionViewModel : BoundObject
     {
-        private readonly TimeSheet _timeSheet;
-        private readonly IPageNavigationService _navigationService;
 
-        public DateSelectionViewModel(TimeSheet timeSheet, IPageNavigationService navigationService)
+        #region Events
+
+        public event EventHandler<DateRange> OnDateSelected;
+        protected virtual void OnOnDateSelected(DateRange e)
         {
-            _timeSheet = timeSheet;
-            _navigationService = navigationService;
+            OnDateSelected?.Invoke(this, e);
+        }
+
+        #endregion
+
+        public DateRangeSelectionViewModel(TimeSheet timeSheet, ICommand goBack)
+        {
             From = DateTime.Today.Date;
             To = From;
+
+            //Lets keep the navigation responsibility with the Aggregate root for now
+            GoBackCommand = goBack;
         }
 
         #region Bindable properties
@@ -66,9 +78,7 @@ namespace TogglTimeManager.ViewModels
         private ICommand _nextCommand;
         public ICommand NextCommand => _nextCommand ?? (_nextCommand = new ButtonCommand(Next));
 
-        private ICommand _goBackCommand;
-        public ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new ButtonCommand(GoBack));
-
+        public ICommand GoBackCommand { get;  }
 
         #endregion
 
@@ -79,12 +89,7 @@ namespace TogglTimeManager.ViewModels
                 return;
             }
 
-            _timeSheet.Period = new DateRange(From, To);
-        }
-
-        private void GoBack()
-        {
-            _navigationService.GoBack();
+            OnOnDateSelected(new DateRange(From, To));
         }
 
         private bool ValidateDates()
@@ -97,5 +102,7 @@ namespace TogglTimeManager.ViewModels
 
             return true;
         }
+
+
     }
 }

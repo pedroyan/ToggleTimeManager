@@ -24,10 +24,10 @@ namespace TogglTimeManager.Views
     /// </summary>
     public partial class FileSelectionPage : Page
     {
-        public FileSelectionPage(IPageNavigationService navigationService)
+        public FileSelectionPage(FileSelectionViewModel fileSelectionViewModel)
         {
             InitializeComponent();
-            DataContext = new FileSelectionViewModel(IoC.Resolve<IFilePicker>(), navigationService);
+            DataContext = fileSelectionViewModel;
         }
     }
 }

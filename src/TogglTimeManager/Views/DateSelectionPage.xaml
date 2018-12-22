@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:TogglTimeManager.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      d:DataContext="{d:DesignInstance viewModels:DateSelectionViewModel}"
+      d:DataContext="{d:DesignInstance viewModels:DateRangeSelectionViewModel}"
       Title="DateSelectionPage">
 
     <Grid>
@@ -18,14 +18,14 @@
         </Grid.RowDefinitions>
         
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0">
-            <Label Content="What is the period of the csv?" FontWeight="Bold"></Label>
+            <Label Content="What is the period of the csv?" FontWeight="Bold" ></Label>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <Label Content="From"/>
                 <DatePicker SelectedDate="{Binding From}"/>
                 <Label Content="to"/>
                 <DatePicker SelectedDate="{Binding To}"/>
             </StackPanel>
-            <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="Red" 
+            <TextBlock Text="{Binding ErrorMessage}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
                        Visibility="{Binding ErrorMessage, Converter={con:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">

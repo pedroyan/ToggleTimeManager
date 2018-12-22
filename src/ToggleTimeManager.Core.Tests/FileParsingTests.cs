@@ -8,16 +8,17 @@ using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using NUnit.Framework;
 using TogglTimeManager.Core;
 using TogglTimeManager.Core.Exceptions;
+using CsvParser = TogglTimeManager.Core.CsvParser;
 
 namespace ToggleTimeManager.Core.Tests
 {
     [TestFixture]
-    public class FileProcessingTests
+    public class FileParsingTests
     {
         [Test]
         public void SuccessfulProcessedSimpleEntriesSheetTest()
         {
-            var resultSheet = CsvProcessor.ProcessCsvFile("TestFiles/Toggl_projects_2018-11-01_to_2018-11-30.csv");
+            var resultSheet = CsvParser.ParseCsvFile("TestFiles/Toggl_projects_2018-11-01_to_2018-11-30.csv");
 
             Assert.AreEqual(5, resultSheet.TimeEntries.Count);
 
@@ -43,7 +44,7 @@ namespace ToggleTimeManager.Core.Tests
         {
             var file = "TestFiles/Toggl_projects_2018-11-01_to_2018-11-30.xml";
 
-            TestDelegate code = () => CsvProcessor.ProcessCsvFile(file);
+            TestDelegate code = () => CsvParser.ParseCsvFile(file);
 
             Assert.Throws<ArgumentException>(code);
         }
@@ -51,7 +52,7 @@ namespace ToggleTimeManager.Core.Tests
         [Test]
         public void SuccessfulProcessedTimeSheetWithoutDate()
         {
-            var resultSheet = CsvProcessor.ProcessCsvFile("TestFiles/MyProjects.csv");
+            var resultSheet = CsvParser.ParseCsvFile("TestFiles/MyProjects.csv");
 
             Assert.AreEqual(5, resultSheet.TimeEntries.Count);
 
@@ -75,7 +76,7 @@ namespace ToggleTimeManager.Core.Tests
         {
             try
             {
-                CsvProcessor.ProcessCsvFile("TestFiles/InvalidHeaders.csv");
+                CsvParser.ParseCsvFile("TestFiles/InvalidHeaders.csv");
             }
             catch (Exception e)
             {
@@ -93,7 +94,7 @@ namespace ToggleTimeManager.Core.Tests
         {
             try
             {
-                CsvProcessor.ProcessCsvFile("TestFiles/InvalidTimeFormat.csv");
+                CsvParser.ParseCsvFile("TestFiles/InvalidTimeFormat.csv");
             }
             catch (Exception e)
             {

@@ -25,10 +25,10 @@ namespace TogglTimeManager.Views
     /// </summary>
     public partial class DateSelectionPage : Page
     {
-        public DateSelectionPage(TimeSheet timeSheet, IPageNavigationService navigationService)
+        public DateSelectionPage(DateRangeSelectionViewModel viewModel)
         {
             InitializeComponent();
-            DataContext = new DateSelectionViewModel(timeSheet, navigationService);
+            DataContext = viewModel;
         }
     }
 }
