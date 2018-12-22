@@ -4,9 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TogglTimeManager.Views.MainDashboard"
+        xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:MainDashboardViewModel}"
         Title="MainDashboard" Height="450" Width="800">
     <Grid>
-        <Label>Main Dashboard</Label>
+        <!-- Dashboard idea: https://social.msdn.microsoft.com/Forums/vstudio/en-US/c7edafe9-d4ac-4bd8-ac25-f4482cfdaa75/dockpanel-stackpanel-or-grid?forum=wpf -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="_New">
+                <MenuItem Header="_Time sheet">
+                    <MenuItem.Icon>
+                        <Image Source="../../Resources/toggl.ico"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Vacations">
+                    <MenuItem.Icon>
+                        <Image Source="../../Resources/beach.ico"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <!--This will become a frame in the future
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>-->
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="Bold" Content="Time Worked:"/>
+                    <TextBox IsEnabled="False" Text="{Binding TimeWorked, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <StatusBar Grid.Row="2">
+            <!--Nothing to see here (yet)-->
+        </StatusBar>
     </Grid>
 </Window>

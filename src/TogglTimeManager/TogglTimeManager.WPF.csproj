@@ -63,9 +63,11 @@
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Helpers\TimespanExtensions.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
     <Compile Include="ViewModels\DateRangeSelectionViewModel.cs" />
+    <Compile Include="ViewModels\MainDashboardViewModel.cs" />
     <Compile Include="ViewModels\NewSheetWindowViewModel.cs" />
     <Compile Include="Views\MainDashboard\MainDashboard.xaml.cs">
       <DependentUpon>MainDashboard.xaml</DependentUpon>
@@ -139,6 +141,11 @@
       <Name>TogglTimeManager.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\toggl.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\beach.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

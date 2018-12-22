@@ -40,6 +40,10 @@ namespace TogglTimeManager.ViewModels
             FileSelectionViewModel.TimeSheetParsed += OnSheetParsed;
         }
 
+        /// <summary>
+        /// Displays the file selection window, beginning the selection flow
+        /// </summary>
+        /// <param name="navigationService">The navigation service instance</param>
         public void DisplayFileSelection(IPageNavigationService navigationService)
         {
             _navigationService = navigationService;

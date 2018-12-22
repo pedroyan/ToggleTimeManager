@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TogglTimeManager.ViewModels;
 
 namespace TogglTimeManager.Views.MainDashboard
 {
@@ -19,9 +20,10 @@ namespace TogglTimeManager.Views.MainDashboard
     /// </summary>
     public partial class MainDashboard : Window
     {
-        public MainDashboard()
+        public MainDashboard(MainDashboardViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }
