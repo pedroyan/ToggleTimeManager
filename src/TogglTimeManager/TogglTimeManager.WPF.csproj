@@ -64,9 +64,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="IoC.cs" />
-    <Compile Include="Services\IPageNavigationService.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
-    <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\DateSelectionViewModel.cs" />
     <Compile Include="Views\DateSelectionPage.xaml.cs">
       <DependentUpon>DateSelectionPage.xaml</DependentUpon>
@@ -87,7 +85,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\FilePicker.cs" />
-    <Compile Include="Services\IFilePicker.cs" />
     <Compile Include="ViewModels\BoundObject.cs" />
     <Compile Include="Helpers\ButtonCommand.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

@@ -8,6 +8,13 @@ using System.Windows.Navigation;
 
 namespace TogglTimeManager.Services
 {
+    public interface IPageNavigationService
+    {
+        void GoBack();
+        void GoForward();
+        void Navigate(Page page);
+    }
+
     public class PageNavigationService : IPageNavigationService
     {
         private readonly NavigationService _service;

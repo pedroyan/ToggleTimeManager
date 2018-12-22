@@ -27,10 +27,7 @@ namespace TogglTimeManager.Views
         public FileSelectionPage(IPageNavigationService navigationService)
         {
             InitializeComponent();
-            DataContext = IoC.Resolve<FileSelectionViewModel>(new Parameter[]
-            {
-                new NamedParameter("navigationService", navigationService)
-            });
+            DataContext = new FileSelectionViewModel(IoC.Resolve<IFilePicker>(), navigationService);
         }
     }
 }
