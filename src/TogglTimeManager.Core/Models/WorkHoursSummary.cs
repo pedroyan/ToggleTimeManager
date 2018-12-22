@@ -12,7 +12,7 @@ namespace TogglTimeManager.Core.Models
         /// <summary>
         /// The amount of time allocated to work on the time period
         /// </summary>
-        public TimeSpan ExpectedWork { get; set; }
+        public TimeSpan PlannedWork { get; set; }
 
         /// <summary>
         /// The period described by this time summary
@@ -23,7 +23,7 @@ namespace TogglTimeManager.Core.Models
         /// The time balance of the specified time period. A positive balance
         /// means the user worked more than the expected
         /// </summary>
-        public TimeSpan WorkTimeBalance => TimeWorked - ExpectedWork;
+        public TimeSpan WorkTimeBalance => TimeWorked - PlannedWork;
 
     }
 }

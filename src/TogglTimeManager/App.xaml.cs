@@ -33,8 +33,9 @@ namespace TogglTimeManager
 
             vm.TimeSheetCompleted += (s, ea) =>
             {
-                var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), ea);
-                new MainDashboard(new MainDashboardViewModel(summary)).Show();
+                var workDayDuration = TimeSpan.FromHours(6);
+                var summary = TimeSummaryCalculator.CalculateHoursSummary(workDayDuration, ea);
+                new MainDashboard(new MainDashboardViewModel(summary, workDayDuration)).Show();
                 window.Close();
             };
         }

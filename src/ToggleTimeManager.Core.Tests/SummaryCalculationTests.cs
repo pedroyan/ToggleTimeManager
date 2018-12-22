@@ -38,7 +38,7 @@ namespace ToggleTimeManager.Core.Tests
             var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet);
 
             Assert.AreEqual(summary.Period, timeSheet.Period);
-            Assert.AreEqual(summary.ExpectedWork, TimeSpan.FromHours(expectedWorkdays * 6));
+            Assert.AreEqual(summary.PlannedWork, TimeSpan.FromHours(expectedWorkdays * 6));
             Assert.AreEqual(summary.TimeWorked, timeSheet.TimeEntries[0].Duration + timeSheet.TimeEntries[1].Duration);
             Assert.AreEqual(summary.WorkTimeBalance, TimeSpan.FromHours(10));
         }
@@ -63,7 +63,7 @@ namespace ToggleTimeManager.Core.Tests
 
             var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet);
             Assert.AreEqual(summary.Period, timeSheet.Period);
-            Assert.AreEqual(summary.ExpectedWork, TimeSpan.FromHours(6));
+            Assert.AreEqual(summary.PlannedWork, TimeSpan.FromHours(6));
             Assert.AreEqual(summary.TimeWorked, timeSheet.TimeEntries[0].Duration);
             Assert.AreEqual(summary.WorkTimeBalance, TimeSpan.FromHours(0));
         }

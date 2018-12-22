@@ -33,18 +33,27 @@
         <Grid Grid.Row="1">
             <!--This will become a frame in the future
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>-->
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal"  Margin="0,5,0,5">
-                    <Label FontWeight="Bold" Content="Time Worked:"/>
-                    <TextBox IsEnabled="False" Text="{Binding TimeWorked, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
-                    <Label FontWeight="Bold" Content="Expected Work:" Margin="10,0,0,0"/>
-                    <TextBox IsEnabled="False" Text="{Binding ExpectedWork, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"  Margin="0,5,0,5" >
-                    <Label FontWeight="Bold" Content="Work Time Balance:"/>
-                    <TextBox IsEnabled="False" Text="{Binding WorkTimeBalance, Mode=OneWay}" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
-                </StackPanel>
-            </StackPanel>
+        
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border  BorderBrush="LightGray" BorderThickness="1">
+                    <DockPanel>
+                        <Border BorderThickness="0 0 0 1" DockPanel.Dock="Top" BorderBrush="LightGray">
+                            <Label Content="{Binding AnalyzedPeriod}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </Border>
+                        <DockPanel  Margin="0,5,5,5" DockPanel.Dock="Top">
+                            <Label FontWeight="Bold" Content="Time Worked:"/>
+                            <TextBox IsEnabled="False" Text="{Binding TimeWorked, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
+                            <Label FontWeight="Bold" Content="Planned Work:" Margin="10,0,0,0"/>
+                            <TextBox IsEnabled="False" Text="{Binding ExpectedWork, Mode=OneWay}" VerticalContentAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel Margin="0,0,5,5">
+                            <Label FontWeight="Bold" Content="Work Time Balance:"/>
+                            <TextBox IsEnabled="False" Text="{Binding WorkTimeBalance, Mode=OneWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{Binding WorkTimeBalanceColor}"/>
+                        </DockPanel>
+                    </DockPanel>
+                </Border>
+            </DockPanel>
+
         </Grid>
         <StatusBar Grid.Row="2">
             <!--Nothing to see here (yet)-->
