@@ -9,7 +9,7 @@ using TogglTimeManager.Views;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class FileSelectionViewModel : BoundObject, INotifyPropertyChanged
+    public class FileSelectionViewModel : BoundObject
     {
         private readonly IFilePicker _filePicker;
         private readonly IPageNavigationService _navigationService;
@@ -71,7 +71,7 @@ namespace TogglTimeManager.ViewModels
                 var timeSheet = CsvProcessor.ProcessCsvFile(TextBox);
                 if (!timeSheet.Period.HasValue)
                 {
-                    _navigationService.Navigate(new DateSelectionPage(timeSheet));
+                    _navigationService.Navigate(new DateSelectionPage(timeSheet, _navigationService));
                     return;
                 }
 

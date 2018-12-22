@@ -18,7 +18,8 @@ namespace TogglTimeManager.Views
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new FileSelectionPage());
+            var navigationService = new PageNavigationService(MainFrame.NavigationService);
+            navigationService.Navigate(new FileSelectionPage(navigationService));
         }
     }
 }

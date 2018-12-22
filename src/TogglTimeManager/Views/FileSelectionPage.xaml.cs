@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Autofac;
+using Autofac.Core;
 using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 
@@ -22,15 +24,13 @@ namespace TogglTimeManager.Views
     /// </summary>
     public partial class FileSelectionPage : Page
     {
-        public FileSelectionPage()
+        public FileSelectionPage(IPageNavigationService navigationService)
         {
             InitializeComponent();
-            Loaded += OnLoaded;
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            DataContext = IoC.Resolve<FileSelectionViewModel>();
+            DataContext = IoC.Resolve<FileSelectionViewModel>(new Parameter[]
+            {
+                new NamedParameter("navigationService", navigationService)
+            });
         }
     }
 }

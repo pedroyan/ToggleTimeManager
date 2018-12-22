@@ -66,6 +66,7 @@
     <Compile Include="IoC.cs" />
     <Compile Include="Services\IPageNavigationService.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
+    <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\DateSelectionViewModel.cs" />
     <Compile Include="Views\DateSelectionPage.xaml.cs">
       <DependentUpon>DateSelectionPage.xaml</DependentUpon>

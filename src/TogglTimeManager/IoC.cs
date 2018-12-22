@@ -20,19 +20,12 @@ namespace TogglTimeManager
         private static ILifetimeScope _scope;
 
         /// <summary>
-        /// Sets the IoC root scope
-        /// </summary>
-        public static void SetScope(ILifetimeScope scope)
-        {
-            _scope = scope;
-        }
-
-        /// <summary>
         /// Register the core services and dependencies of the application
         /// </summary>
-        /// <param name="builder">The DI container builder</param>
-        public static void RegisterServices(ContainerBuilder builder)
+        public static void RegisterServices()
         {
+            var builder = new ContainerBuilder();
+
             var assembly = Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly)
@@ -41,6 +34,8 @@ namespace TogglTimeManager
 
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => t.Namespace == typeof(FileSelectionViewModel).Namespace);
+
+            _scope = builder.Build();
         }
 
         /// <summary>

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Autofac;
 using Autofac.Core;
 using TogglTimeManager.Core.Models;
+using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 
 namespace TogglTimeManager.Views
@@ -24,14 +25,10 @@ namespace TogglTimeManager.Views
     /// </summary>
     public partial class DateSelectionPage : Page
     {
-        public DateSelectionPage(TimeSheet timeSheet)
+        public DateSelectionPage(TimeSheet timeSheet, IPageNavigationService navigationService)
         {
             InitializeComponent();
-            DataContext =
-                IoC.Resolve<DateSelectionViewModel>(new Parameter[]
-                {
-                    new NamedParameter("timeSheet", timeSheet)
-                });
+            DataContext = new DateSelectionViewModel(timeSheet, navigationService);
         }
     }
 }
