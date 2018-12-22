@@ -17,7 +17,7 @@ namespace TogglTimeManager.ViewModels
     /// </summary>
     public class NewSheetWindowViewModel
     {
-        private readonly IPageNavigationService _navigationService;
+        private IPageNavigationService _navigationService;
         private TimeSheet _timeSheet;
 
         public FileSelectionViewModel FileSelectionViewModel { get; }
@@ -30,14 +30,16 @@ namespace TogglTimeManager.ViewModels
         }
 
 
-        public NewSheetWindowViewModel(IPageNavigationService navigationService)
+        public NewSheetWindowViewModel()
         {
-            _navigationService = navigationService;
-
             FileSelectionViewModel = new FileSelectionViewModel(IoC.Resolve<IFilePicker>());
             FileSelectionViewModel.TimeSheetParsed += OnSheetParsed;
+        }
 
-            _navigationService.Navigate(new FileSelectionPage(FileSelectionViewModel));
+        public void DisplayFileSelection(IPageNavigationService navigationService)
+        {
+            _navigationService = navigationService;
+            navigationService.Navigate(new FileSelectionPage(FileSelectionViewModel));
         }
 
         private void OnSheetParsed(object sender, TimeSheet e)

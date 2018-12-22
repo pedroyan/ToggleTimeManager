@@ -24,7 +24,8 @@ namespace TogglTimeManager
 
             IoC.RegisterServices();
 
-            var window = new NewSheetWindow();
+            var vm = new NewSheetWindowViewModel();
+            var window = new NewSheetWindow(vm);
             window.Show();
 
             //Dashboard idea: https://social.msdn.microsoft.com/Forums/vstudio/en-US/c7edafe9-d4ac-4bd8-ac25-f4482cfdaa75/dockpanel-stackpanel-or-grid?forum=wpf

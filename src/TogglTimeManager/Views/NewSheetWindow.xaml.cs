@@ -10,16 +10,15 @@ namespace TogglTimeManager.Views
     /// </summary>
     public partial class NewSheetWindow : Window
     {
-        public NewSheetWindow()
+        public NewSheetWindow(NewSheetWindowViewModel viewModel)
         {
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
-        }
+            DataContext = viewModel;
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            var navigationService = new PageNavigationService(MainFrame.NavigationService);
-            DataContext = new NewSheetWindowViewModel(navigationService);
+            Loaded += (s, e) =>
+            {
+                viewModel.DisplayFileSelection(new PageNavigationService(MainFrame.NavigationService));
+            };
         }
     }
 }
