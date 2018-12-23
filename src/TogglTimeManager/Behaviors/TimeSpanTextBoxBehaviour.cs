@@ -213,7 +213,7 @@ namespace TogglTimeManager.Behaviors
 			if (char.IsDigit(e.Text[0]))
 				if (e.Text.Any(c => TestCaretAtEnd(c, _textBox.SelectionStart)))
 					ReplaceDigit(_textBox.SelectionStart, e.Text[0], true);
-				else if (_textBox.Text.Substring(0,_textBox.SelectionStart -1).Replace(':', '0').All(i => i == '0'))
+				else if (_textBox.Text.Substring(0, _textBox.SelectionStart).Replace(':', '0').All(i => i == '0'))
 					ChangeValueDependingOnLocation(e.Text[0] - _textBox.Text[_textBox.SelectionStart]);
 			e.Handled = true;
 		}
@@ -259,6 +259,13 @@ namespace TogglTimeManager.Behaviors
 		private void ChangeValueDependingOnLocation(int amount)
 		{
 			int selectionStart = _textBox.SelectionStart;
+
+            //disregard the empty space on the format string
+		    if (selectionStart >= _formatString.Length - 1)
+		    {
+		        return;
+		    }
+
 			int addValue = (_formatString[selectionStart] != _formatString[selectionStart + 1]
 					? 1 : (_formatString[selectionStart] != _formatString[selectionStart + 2])
 					? 10 : 100) * amount;

@@ -25,7 +25,7 @@ namespace TogglTimeManager.Converters
         public static Visibility Convert(object booleanValue)
         {
             var isVisible = booleanValue != null && (bool)booleanValue;
-            return isVisible ? Visibility.Visible : Visibility.Hidden;
+            return isVisible ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
