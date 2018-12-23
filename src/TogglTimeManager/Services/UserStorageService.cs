@@ -50,12 +50,12 @@ namespace TogglTimeManager.Services
             return _currentUserInfo;
         }
 
-        private async Task<UserInfo> GetFromFileStorage()
+        private static async Task<UserInfo> GetFromFileStorage()
         {
             IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForDomain();
-            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(StorageFileName, FileMode.Open, storage))
+            using (var stream = new IsolatedStorageFileStream(StorageFileName, FileMode.Open, storage))
             {
-                using (StreamReader reader = new StreamReader(stream))
+                using (var reader = new StreamReader(stream))
                 {
                     return JsonConvert.DeserializeObject<UserInfo>(await reader.ReadToEndAsync());
                 }
@@ -66,12 +66,12 @@ namespace TogglTimeManager.Services
         {
             try
             {
-                var storage = IsolatedStorageFile.GetUserStoreForDomain();
+                IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForDomain();
                 using (var stream = new IsolatedStorageFileStream(StorageFileName, FileMode.Create, storage))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
-                        var toWrite = JsonConvert.SerializeObject(userInfo);
+                        string toWrite = JsonConvert.SerializeObject(userInfo);
                         await writer.WriteAsync(toWrite);
                     }
                 }
