@@ -1,0 +1,50 @@
+﻿<Page x:Class="TogglTimeManager.Views.NewSheet.DateSelectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:con="clr-namespace:TogglTimeManager.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
+      xmlns:behaviors="clr-namespace:TogglTimeManager.Behaviors"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:DataContext="{d:DesignInstance viewModels:CompleteInformationViewModel}"
+      Title="DateSelectionPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0">
+            <StackPanel Margin="0,0,0,10" Name="ContractTime">
+                <Label Content="What was the expected contract per day for the&#10;time period?" FontWeight="Bold"></Label>
+                <TextBox HorizontalAlignment="Stretch"
+                         HorizontalContentAlignment="Center"
+                         VerticalAlignment="Center"
+                         FontSize="15"
+                         behaviors:TimeSpanTextBoxBehaviour.MaxTime="24:00:00"
+                         behaviors:TimeSpanTextBoxBehaviour.Value="{Binding WorkDuration, Mode=TwoWay}"  behaviors:TimeSpanTextBoxBehaviour.TimeFormat="Minutes"/>
+                <TextBlock Text="{Binding DurationErrorMessage}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
+                           Visibility="{Binding DurationErrorMessage, Converter={con:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
+            </StackPanel>
+            <StackPanel Name="TimeSheetPeriod"
+                Visibility="{Binding ShowPeriod, Converter={con:BoolToVisibilityConverter}}">
+                <Label Content="What is the period of the csv?" FontWeight="Bold" ></Label>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <Label Content="From"/>
+                    <DatePicker SelectedDate="{Binding From}"/>
+                    <Label Content="to"/>
+                    <DatePicker SelectedDate="{Binding To}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding PeriodErrorMessage}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
+                           Visibility="{Binding PeriodErrorMessage, Converter={con:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+            <Button HorizontalAlignment="Left" Width="60" Margin="0,10,20,10" Command="{Binding GoBackCommand}">Previous</Button>
+            <Button HorizontalAlignment="Left" Width="60" Margin="20,10,0,10" Command="{Binding NextCommand}">Next</Button>
+        </StackPanel>
+    </Grid>
+</Page>

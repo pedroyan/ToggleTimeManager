@@ -88,10 +88,12 @@ namespace TogglTimeManager.ViewModels
             var viewModel = new NewSheetWindowViewModel();
             var newSheetWindow = new NewSheetWindow(viewModel);
 
-            viewModel.TimeSheetCompleted += (s, e) =>
+            viewModel.TimeSheetCreated += (s, e) =>
             {
-                user.Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, e);
+                user.WorkContract = e.WorkContract;
+                user.Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, e.TimeSheet);
                 Summary = user.Summary;
+
                 _repository.Persist(user);
                 _windowService.Close(newSheetWindow);
             };

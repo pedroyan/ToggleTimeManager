@@ -8,7 +8,7 @@ namespace TogglTimeManager.Views.NewSheet
     /// </summary>
     public partial class DateSelectionPage : Page
     {
-        public DateSelectionPage(DateRangeSelectionViewModel viewModel)
+        public DateSelectionPage(CompleteInformationViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

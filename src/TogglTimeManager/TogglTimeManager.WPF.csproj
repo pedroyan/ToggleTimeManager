@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\TimeSpanTextBoxBehaviour.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
@@ -69,14 +70,14 @@
     <Compile Include="Services\UserRepository.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="UserInfo.cs" />
-    <Compile Include="ViewModels\DateRangeSelectionViewModel.cs" />
+    <Compile Include="ViewModels\CompleteInformationViewModel.cs" />
     <Compile Include="ViewModels\MainDashboardViewModel.cs" />
     <Compile Include="ViewModels\NewSheetWindowViewModel.cs" />
     <Compile Include="Views\MainDashboard\MainDashboard.xaml.cs">
       <DependentUpon>MainDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewSheet\DateSelectionPage.xaml.cs">
-      <DependentUpon>DateSelectionPage.xaml</DependentUpon>
+    <Compile Include="Views\NewSheet\CompleteInformationPage.xaml.cs">
+      <DependentUpon>CompleteInformationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewSheet\FileSelectionPage.xaml.cs">
       <DependentUpon>FileSelectionPage.xaml</DependentUpon>
@@ -85,7 +86,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewSheet\DateSelectionPage.xaml">
+    <Page Include="Views\NewSheet\CompleteInformationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,5 +156,6 @@
       <Version>12.0.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -49,12 +49,12 @@ namespace TogglTimeManager
             var window = new NewSheetWindow(vm);
             window.Show();
 
-            vm.TimeSheetCompleted += (s, ea) =>
+            vm.TimeSheetCreated += (s, ea) =>
             {
-                var workDayDuration = TimeSpan.FromHours(6);
                 var userInfo = new UserInfo()
                 {
-                    Summary = TimeSummaryCalculator.CalculateHoursSummary(workDayDuration, ea)
+                    Summary = TimeSummaryCalculator.CalculateHoursSummary(ea.WorkContract, ea.TimeSheet),
+                    WorkContract = ea.WorkContract
                 };
 
                 //If this step fails, application should crash
