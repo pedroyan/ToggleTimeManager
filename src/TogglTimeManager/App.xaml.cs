@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
+using Autofac.Core;
 using TogglTimeManager.Core;
 using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
@@ -22,14 +23,14 @@ namespace TogglTimeManager
     /// </summary>
     public partial class App : Application
     {
-        private IUserRepository userRepository;
+        private IUserRepository _userRepository;
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             IoC.RegisterServices();
-            userRepository = IoC.Resolve<IUserRepository>();
-            var userInfo = await userRepository.GetUserInfo();
+            _userRepository = IoC.Resolve<IUserRepository>();
+            var userInfo = await _userRepository.GetUserInfo();
 
             if (userInfo == null)
             {
@@ -37,7 +38,8 @@ namespace TogglTimeManager
             }
             else
             {
-                new MainDashboard(new MainDashboardViewModel(userInfo.Summary)).Show();
+                var vm = new MainDashboardViewModel(userInfo.Summary, _userRepository, IoC.Resolve<IWindowService>());
+                new MainDashboard(vm).Show();
             }
         }
 
@@ -55,16 +57,14 @@ namespace TogglTimeManager
                     Summary = TimeSummaryCalculator.CalculateHoursSummary(workDayDuration, ea)
                 };
 
-                userRepository.Persist(userInfo);
+                //If this step fails, application should crash
+                _userRepository.Persist(userInfo);
 
-                new MainDashboard(new MainDashboardViewModel(userInfo.Summary)).Show();
+                var mdvm = new MainDashboardViewModel(userInfo.Summary, _userRepository, IoC.Resolve<IWindowService>());
+                new MainDashboard(mdvm).Show();
+
                 window.Close();
             };
-        }
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            base.OnExit(e);
         }
     }
 }

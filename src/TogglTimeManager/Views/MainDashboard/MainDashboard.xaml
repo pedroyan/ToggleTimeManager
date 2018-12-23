@@ -16,8 +16,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="_New">
-                <MenuItem Header="_Time sheet">
+            <MenuItem Header="_Manage">
+                <MenuItem Header="_Update time sheet" Command="{Binding UpdateTimeSheetCommand}">
                     <MenuItem.Icon>
                         <Image Source="../../Resources/toggl.ico"></Image>
                     </MenuItem.Icon>

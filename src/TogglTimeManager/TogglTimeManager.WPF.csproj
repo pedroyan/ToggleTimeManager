@@ -66,7 +66,8 @@
     <Compile Include="Helpers\TimespanExtensions.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
-    <Compile Include="Services\UserStorageService.cs" />
+    <Compile Include="Services\UserRepository.cs" />
+    <Compile Include="Services\WindowService.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="ViewModels\DateRangeSelectionViewModel.cs" />
     <Compile Include="ViewModels\MainDashboardViewModel.cs" />

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Exception = System.Exception;
 
 namespace TogglTimeManager.Services
 {
@@ -22,7 +23,7 @@ namespace TogglTimeManager.Services
         /// </summary>
         /// <param name="userInfo">Instance to be saved</param>
         /// <returns>A flag indicating if the persistence was successful</returns>
-        Task <bool> Persist(UserInfo userInfo);
+        Task Persist(UserInfo userInfo);
     }
 
     public class UserRepository : IUserRepository
@@ -30,6 +31,7 @@ namespace TogglTimeManager.Services
         private const string StorageFileName = "userinfo.txt";
         private UserInfo _currentUserInfo;
 
+        /// <inheritdoc />
         public async Task<UserInfo> GetUserInfo()
         {
             if (_currentUserInfo != null)
@@ -62,7 +64,8 @@ namespace TogglTimeManager.Services
             }
         }
 
-        public async Task<bool> Persist(UserInfo userInfo)
+        /// <inheritdoc />
+        public async Task Persist(UserInfo userInfo)
         {
             try
             {
@@ -75,14 +78,12 @@ namespace TogglTimeManager.Services
                         await writer.WriteAsync(toWrite);
                     }
                 }
-
                 _currentUserInfo = userInfo;
-                return true;
             }
             catch (Exception e)
             {
-                //TODO: Log the exception
-                return false;
+                //TODO: Add logging here.
+                throw;
             }
         }
     }
