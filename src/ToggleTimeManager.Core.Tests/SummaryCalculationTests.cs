@@ -62,10 +62,59 @@ namespace ToggleTimeManager.Core.Tests
             };
 
             var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, null);
-            Assert.AreEqual(summary.Period, timeSheet.Period);
-            Assert.AreEqual(summary.PlannedWork, TimeSpan.FromHours(6));
-            Assert.AreEqual(summary.TimeWorked, timeSheet.TimeEntries[0].Duration);
-            Assert.AreEqual(summary.WorkTimeBalance, TimeSpan.FromHours(0));
+
+            Assert.AreEqual(timeSheet.Period, summary.Period);
+            Assert.AreEqual(TimeSpan.FromHours(6), summary.PlannedWork);
+            Assert.AreEqual(timeSheet.TimeEntries[0].Duration, summary.TimeWorked);
+            Assert.AreEqual(TimeSpan.FromHours(0), summary.WorkTimeBalance);
+        }
+
+        [Test]
+        public void SummaryCalculationWithVacations()
+        {
+            var timeSheet = new TimeSheet()
+            {
+                //21 week days in the month
+                Period = new DateRange(new DateTime(2018, 12, 1), new DateTime(2018, 12, 31)),
+                TimeEntries = new List<TimeEntry>()
+                {
+                    new TimeEntry()
+                    {
+                        Duration = TimeSpan.FromHours(6*7),
+                        Client = "Mock Client",
+                        Project = "Normal project"
+                    }
+                }
+            };
+
+            var timeOff = new List<TimeOff>()
+            {
+                new TimeOff()
+                {
+                    //11 workdays on vacations, 15 total days on vacations
+                    Period = new DateRange(new DateTime(2018, 12, 7), new DateTime(2018, 12, 21)),
+                    Description = "Vacations"
+                },
+                new TimeOff()
+                {
+                    //Overlapping with vacations, so it shouldn't affect the calculations
+                    Period = new DateRange(new DateTime(2018,12,11), new DateTime(2018,12,13)),
+                    Description = "No clients scheduled"
+                },
+                new TimeOff()
+                {
+                    //3 days off
+                    Period = new DateRange(new DateTime(2018,12,24), new DateTime(2018,12,26)),
+                    Description = "Christmas!"
+                }
+            };
+
+            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, timeOff);
+
+            Assert.AreEqual(timeSheet.Period, summary.Period);
+            Assert.AreEqual(TimeSpan.FromHours(6 * 7), summary.PlannedWork);
+            Assert.AreEqual(TimeSpan.FromHours(6 * 7), summary.TimeWorked);
+            Assert.AreEqual(TimeSpan.Zero, summary.WorkTimeBalance);
         }
     }
 }

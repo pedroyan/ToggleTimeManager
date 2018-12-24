@@ -56,7 +56,7 @@ namespace TogglTimeManager.Core
             int workDays = GetWorkingDays(analyzedPeriod);
 
             if (timeOffs != null && timeOffs.Count > 0)
-                workDays = workDays - GetTimeOffDays(analyzedPeriod, timeOffs.Select(to => to.Period));
+                workDays = workDays - GeWorkDaysOff(analyzedPeriod, timeOffs.Select(to => to.Period));
 
             return workDayDuration.Multiply(workDays);
         }
@@ -113,17 +113,20 @@ namespace TogglTimeManager.Core
             return workdays;
         }
 
-        private static int GetTimeOffDays(DateRange analyzedPeriod, IEnumerable<DateRange> timeOffs)
+        private static int GeWorkDaysOff(DateRange analyzedPeriod, IEnumerable<DateRange> timeOffs)
         {
-            foreach (var timeOff in timeOffs)
-            {
-                if (analyzedPeriod.Overlaps(timeOff))
-                {
-                    
-                }
-            }
+            IEnumerable<DateRange> flattened = DateRangeHelper.Flatten(timeOffs);
 
-            throw new NotImplementedException();
+            return (from interval in flattened
+                let minDate = interval.StartDate < analyzedPeriod.StartDate
+                    ? analyzedPeriod.StartDate
+                    : interval.StartDate
+                let maxDate = interval.EndDate > analyzedPeriod.EndDate
+                    ? analyzedPeriod.EndDate
+                    : interval.EndDate
+                select new DateRange(minDate, maxDate)
+                into trimmed
+                select GetWorkingDays(trimmed)).Sum();
         }
     }
 }
