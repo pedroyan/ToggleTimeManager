@@ -6,19 +6,10 @@
              xmlns:local="clr-namespace:TogglTimeManager.Controls"
              xmlns:converters="clr-namespace:TogglTimeManager.Converters"
              d:DesignHeight="450" d:DesignWidth="800"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:DatePickerViewModel}">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <Label Content="From"/>
-                <DatePicker/>
-                <Label Content="to"/>
-                <DatePicker/>
-            </StackPanel>
-            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DateRangePicker}}, Path=ErrorString}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
-                       Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DateRangePicker}}, Path=ErrorString, Converter={converters:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
-        </StackPanel>
-        <!--<StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <Label Content="From"/>
                 <DatePicker SelectedDate="{Binding From}"/>
@@ -27,6 +18,6 @@
             </StackPanel>
             <TextBlock Text="{Binding PeriodErrorMessage}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
                        Visibility="{Binding PeriodErrorMessage, Converter={converters:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
-        </StackPanel>-->
+        </StackPanel>
     </Grid>
 </UserControl>

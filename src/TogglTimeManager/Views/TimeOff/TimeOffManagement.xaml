@@ -12,7 +12,8 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="How long did the time off last?" FontWeight="Bold"/>
-            <controls:DateRangePicker ErrorString="{Binding ErrorMessage}"></controls:DateRangePicker>
+            <controls:DateRangePicker DateRange="{Binding Range}"/>
         </StackPanel>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="358,295,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ChangeRangeCommand}"/>
     </Grid>
 </Window>
