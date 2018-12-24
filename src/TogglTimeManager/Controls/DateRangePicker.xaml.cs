@@ -15,6 +15,7 @@ namespace TogglTimeManager.Controls
         public DateRangePicker()
         {
             InitializeComponent();
+            ViewModel.DateRangeChanged += (s, e) => { DateRange = e; };
         }
 
         #region DependencyPropeties
