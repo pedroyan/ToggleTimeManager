@@ -10,6 +10,7 @@ using System.Windows;
 using Autofac;
 using Autofac.Core;
 using TogglTimeManager.Core;
+using TogglTimeManager.Core.Models;
 using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 using TogglTimeManager.Views;
@@ -53,7 +54,7 @@ namespace TogglTimeManager
             {
                 var userInfo = new UserInfo()
                 {
-                    Summary = TimeSummaryCalculator.CalculateHoursSummary(ea.WorkContract, ea.TimeSheet),
+                    Summary = TimeSummaryCalculator.CalculateHoursSummary(ea.WorkContract, ea.TimeSheet, null),
                     WorkContract = ea.WorkContract
                 };
 

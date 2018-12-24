@@ -91,7 +91,9 @@ namespace TogglTimeManager.ViewModels
             viewModel.TimeSheetCreated += (s, e) =>
             {
                 user.WorkContract = e.WorkContract;
-                user.Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, e.TimeSheet);
+
+                //TODO: Implement this properly
+                user.Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, e.TimeSheet, null);
                 Summary = user.Summary;
 
                 _repository.Persist(user);

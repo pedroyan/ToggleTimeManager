@@ -31,6 +31,17 @@ namespace TogglTimeManager.Core.Models
         /// </summary>
         public DateTime EndDate { get; }
 
+        /// <summary>
+        /// Checks if this range overlaps another date range
+        /// </summary>
+        /// <param name="range">Range to be analyzed</param>
+        /// <returns>True if overlaps, false otherwise</returns>
+        public bool Overlaps(DateRange range)
+        {
+            //Proof: https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
+            return StartDate <= range.EndDate && EndDate >= range.StartDate;
+        }
+
         #region Equality
 
         public bool Equals(DateRange other)

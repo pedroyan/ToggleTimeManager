@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TogglTimeManager.Core.Helpers;
 using TogglTimeManager.Core.Models;
@@ -14,7 +15,8 @@ namespace TogglTimeManager.Core
         /// has no period assigned to it</exception>
         /// <param name="workDayDuration">The duration of the workday stipulated on the contract</param>
         /// <param name="timeSheet">The time sheet to be evaluated</param>
-        public static WorkHoursSummary CalculateHoursSummary(TimeSpan workDayDuration, TimeSheet timeSheet)
+        /// <param name="timeOffs">The time offs registered by a user</param>
+        public static WorkHoursSummary CalculateHoursSummary(TimeSpan workDayDuration, TimeSheet timeSheet, IReadOnlyCollection<TimeOff> timeOffs)
         {
             if (timeSheet == null) throw new ArgumentNullException(nameof(timeSheet), "A time sheet instance is needed to calculate the summary");
 
@@ -28,18 +30,35 @@ namespace TogglTimeManager.Core
                 throw new ArgumentException("A time sheet must contain the period for this calculation");
             }
 
-            int workDays = GetWorkingDays(timeSheet.Period.Value);
-
-            var totalWorkHours = timeSheet.TimeEntries.Select(te => te.Duration)
+            TimeSpan hoursWorked = timeSheet.TimeEntries.Select(te => te.Duration)
                 .Aggregate((sum, next) => sum + next);
+
+            TimeSpan plannedWork = CalculatePlannedWork(workDayDuration, timeSheet.Period.Value, timeOffs);
 
             return new WorkHoursSummary()
             {
                 WorkDayDuration = workDayDuration,
-                PlannedWork = workDayDuration.Multiply(workDays),
+                PlannedWork = plannedWork,
                 Period = timeSheet.Period.Value,
-                TimeWorked = totalWorkHours
+                TimeWorked = hoursWorked
             };
+        }
+
+        /// <summary>
+        /// Calculates the amount of planned work on a given period
+        /// </summary>
+        /// <param name="workDayDuration">The duration of a workday</param>
+        /// <param name="analyzedPeriod">The period being analyzed</param>
+        /// <param name="timeOffs">The time offs recorded by the user</param>
+        /// <returns></returns>
+        private static TimeSpan CalculatePlannedWork(TimeSpan workDayDuration, DateRange analyzedPeriod, IReadOnlyCollection<TimeOff> timeOffs)
+        {
+            int workDays = GetWorkingDays(analyzedPeriod);
+
+            if (timeOffs != null && timeOffs.Count > 0)
+                workDays = workDays - GetTimeOffDays(analyzedPeriod, timeOffs.Select(to => to.Period));
+
+            return workDayDuration.Multiply(workDays);
         }
 
         /// <summary>
@@ -92,6 +111,19 @@ namespace TogglTimeManager.Core
             }
 
             return workdays;
+        }
+
+        private static int GetTimeOffDays(DateRange analyzedPeriod, IEnumerable<DateRange> timeOffs)
+        {
+            foreach (var timeOff in timeOffs)
+            {
+                if (analyzedPeriod.Overlaps(timeOff))
+                {
+                    
+                }
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

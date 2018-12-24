@@ -35,7 +35,7 @@ namespace ToggleTimeManager.Core.Tests
             };
 
             const int expectedWorkdays = 7;
-            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet);
+            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, null);
 
             Assert.AreEqual(summary.Period, timeSheet.Period);
             Assert.AreEqual(summary.PlannedWork, TimeSpan.FromHours(expectedWorkdays * 6));
@@ -61,7 +61,7 @@ namespace ToggleTimeManager.Core.Tests
                 }
             };
 
-            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet);
+            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, null);
             Assert.AreEqual(summary.Period, timeSheet.Period);
             Assert.AreEqual(summary.PlannedWork, TimeSpan.FromHours(6));
             Assert.AreEqual(summary.TimeWorked, timeSheet.TimeEntries[0].Duration);
