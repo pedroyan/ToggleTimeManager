@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="TogglTimeManager.Controls.DateRangePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TogglTimeManager.Controls"
+             xmlns:converters="clr-namespace:TogglTimeManager.Converters"
+             d:DesignHeight="450" d:DesignWidth="800"
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="From"/>
+                <DatePicker/>
+                <Label Content="to"/>
+                <DatePicker/>
+            </StackPanel>
+            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DateRangePicker}}, Path=ErrorString}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
+                       Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DateRangePicker}}, Path=ErrorString, Converter={converters:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
+        </StackPanel>
+        <!--<StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="From"/>
+                <DatePicker SelectedDate="{Binding From}"/>
+                <Label Content="to"/>
+                <DatePicker SelectedDate="{Binding To}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding PeriodErrorMessage}" Margin="0,10,0,0" Foreground="Red" MaxWidth="262" HorizontalAlignment="Center" TextAlignment="Center"
+                       Visibility="{Binding PeriodErrorMessage, Converter={converters:NullToVisibilityConverter}}" TextWrapping="WrapWithOverflow"/>
+        </StackPanel>-->
+    </Grid>
+</UserControl>

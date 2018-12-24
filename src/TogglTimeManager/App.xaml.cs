@@ -16,6 +16,7 @@ using TogglTimeManager.ViewModels;
 using TogglTimeManager.Views;
 using TogglTimeManager.Views.MainDashboard;
 using TogglTimeManager.Views.NewSheet;
+using TogglTimeManager.Views.TimeOff;
 
 namespace TogglTimeManager
 {
@@ -30,6 +31,9 @@ namespace TogglTimeManager
             base.OnStartup(e);
 
             IoC.RegisterServices();
+
+            new TimeOffManagement(new TimeOffWindowViewModel()).Show();
+            /*
             _userRepository = IoC.Resolve<IUserRepository>();
             var userInfo = await _userRepository.GetUserInfo();
 
@@ -41,7 +45,7 @@ namespace TogglTimeManager
             {
                 var vm = new MainDashboardViewModel(userInfo.Summary, _userRepository, IoC.Resolve<IWindowService>());
                 new MainDashboard(vm).Show();
-            }
+            }*/
         }
 
         private void InitialSetup()
