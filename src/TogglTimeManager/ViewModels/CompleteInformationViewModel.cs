@@ -27,7 +27,7 @@ namespace TogglTimeManager.ViewModels
     /// <summary>
     /// View model responsible for handling the date range selection
     /// </summary>
-    public class CompleteInformationViewModel : BoundObject
+    public class CompleteInformationViewModel : ObservableObject
     {
         private readonly TimeSheet _timeSheet;
 
@@ -77,7 +77,7 @@ namespace TogglTimeManager.ViewModels
             }
         }
 
-        public bool ShowPeriod => !_timeSheet.Period.HasValue;
+        public bool ShowPeriod => /*!_timeSheet.Period.HasValue;*/ true;
 
         private string _periodErrorMessage;
         public string PeriodErrorMessage

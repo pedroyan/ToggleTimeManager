@@ -13,7 +13,7 @@ namespace TogglTimeManager.ViewModels
     /// <summary>
     /// View model responsible for handling the file selection
     /// </summary>
-    public class FileSelectionViewModel : BoundObject
+    public class FileSelectionViewModel : ObservableObject
     {
         private readonly IFilePicker _filePicker;
 

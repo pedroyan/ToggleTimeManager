@@ -4,7 +4,7 @@ using TogglTimeManager.Properties;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class BoundObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
