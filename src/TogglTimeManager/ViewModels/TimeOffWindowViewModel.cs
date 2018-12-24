@@ -27,11 +27,11 @@ namespace TogglTimeManager.ViewModels
         private ICommand _changeRangeCommand;
         public ICommand ChangeRangeCommand => _changeRangeCommand ?? (_changeRangeCommand = new ButtonCommand(ChangeRange));
 
-        private int counter = 0;
+        private int _counter = 0;
         private void ChangeRange()
         {
-            counter++;
-            Range = new DateRange(DateTime.Today, DateTime.Today.AddDays(counter));
+            _counter++;
+            Range = new DateRange(DateTime.Today, DateTime.Today.AddDays(_counter));
         }
     }
 }

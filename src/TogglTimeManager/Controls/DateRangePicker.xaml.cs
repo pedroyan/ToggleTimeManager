@@ -33,12 +33,17 @@ namespace TogglTimeManager.Controls
         #region DependencyPropeties
 
         public static readonly DependencyProperty DateRangeProperty = DependencyProperty.Register(
-            "DateRange", typeof(DateRange?), typeof(DateRangePicker), new PropertyMetadata(default(DateRange?)));
+            "DateRange", typeof(DateRange?), typeof(DateRangePicker), new PropertyMetadata(default(DateRange?), OnRangeChanged));
 
         public DateRange? DateRange
         {
             get => (DateRange?) GetValue(DateRangeProperty);
             set => SetValue(DateRangeProperty, value);
+        }
+
+        private static void OnRangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Console.WriteLine(d);
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
