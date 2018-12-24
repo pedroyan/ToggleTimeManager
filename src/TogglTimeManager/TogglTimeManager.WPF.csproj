@@ -111,7 +111,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\FilePicker.cs" />
-    <Compile Include="ViewModels\BoundObject.cs" />
+    <Compile Include="ViewModels\ObservableObject.cs" />
     <Compile Include="Helpers\ButtonCommand.cs" />
     <Compile Include="Views\NewSheet\NewSheetWindow.xaml.cs">
       <DependentUpon>NewSheetWindow.xaml</DependentUpon>

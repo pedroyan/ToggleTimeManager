@@ -13,7 +13,7 @@ using TogglTimeManager.Views.NewSheet;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class MainDashboardViewModel : BoundObject
+    public class MainDashboardViewModel : ObservableObject
     {
         private readonly IUserRepository _repository;
         private readonly IWindowService _windowService;

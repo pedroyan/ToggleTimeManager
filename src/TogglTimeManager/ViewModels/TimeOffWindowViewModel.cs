@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class TimeOffWindowViewModel : BoundObject
+    public class TimeOffWindowViewModel : ObservableObject
     {
-        public string ErrorMessage => "Sample indirect binding";
+        public string ErrorMessage => "";
     }
 }

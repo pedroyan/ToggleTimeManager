@@ -23,6 +23,7 @@ namespace TogglTimeManager.Controls
         public DateRangePicker()
         {
             InitializeComponent();
+            DataContext = new DatePickerViewModel();
         }
 
         #region DependencyPropeties

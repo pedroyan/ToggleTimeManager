@@ -27,7 +27,7 @@ namespace TogglTimeManager.ViewModels
     /// <summary>
     /// View model responsible for handling the date range selection
     /// </summary>
-    public class CompleteInformationViewModel : BoundObject
+    public class CompleteInformationViewModel : ObservableObject
     {
         private readonly TimeSheet _timeSheet;
 
