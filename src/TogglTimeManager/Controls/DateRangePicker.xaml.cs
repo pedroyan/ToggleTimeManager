@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TogglTimeManager.Core.Models;
 
 namespace TogglTimeManager.Controls
@@ -21,29 +10,22 @@ namespace TogglTimeManager.Controls
     /// </summary>
     public partial class DateRangePicker : UserControl
     {
-        private DatePickerViewModel ViewModel => (DatePickerViewModel) DataContext;
+        private DatePickerViewModel ViewModel => (DatePickerViewModel)RootGrid.DataContext;
 
         public DateRangePicker()
         {
             InitializeComponent();
-            DataContext = new DatePickerViewModel();
-            ViewModel.DateRangeChanged += (s, e) => { DateRange = e; };
         }
 
         #region DependencyPropeties
 
         public static readonly DependencyProperty DateRangeProperty = DependencyProperty.Register(
-            "DateRange", typeof(DateRange?), typeof(DateRangePicker), new PropertyMetadata(default(DateRange?), OnRangeChanged));
+            "DateRange", typeof(DateRange?), typeof(DateRangePicker), new PropertyMetadata(default(DateRange?)));
 
         public DateRange? DateRange
         {
             get => (DateRange?) GetValue(DateRangeProperty);
             set => SetValue(DateRangeProperty, value);
-        }
-
-        private static void OnRangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            Console.WriteLine(d);
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
