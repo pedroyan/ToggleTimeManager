@@ -118,6 +118,7 @@ namespace TogglTimeManager.Core
             IEnumerable<DateRange> flattened = DateRangeHelper.Flatten(timeOffs);
 
             return (from interval in flattened
+                where analyzedPeriod.Overlaps(interval)
                 let minDate = interval.StartDate < analyzedPeriod.StartDate
                     ? analyzedPeriod.StartDate
                     : interval.StartDate

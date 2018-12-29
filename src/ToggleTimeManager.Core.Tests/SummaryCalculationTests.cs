@@ -116,5 +116,79 @@ namespace ToggleTimeManager.Core.Tests
             Assert.AreEqual(TimeSpan.FromHours(6 * 7), summary.TimeWorked);
             Assert.AreEqual(TimeSpan.Zero, summary.WorkTimeBalance);
         }
+
+        [Test]
+        public void SummaryCalculationWithVacationsAfterTheAnalyzedPeriod()
+        {
+            int workDays = 93;
+            var timeSheet = new TimeSheet()
+            {
+                //98 week days
+                Period = new DateRange(new DateTime(2018, 8, 1), new DateTime(2018, 12, 7)),
+                TimeEntries = new List<TimeEntry>()
+                {
+                    new TimeEntry()
+                    {
+                        Duration = TimeSpan.FromHours(6*workDays),
+                        Client = "Mock Client",
+                        Project = "Normal project"
+                    }
+                }
+            };
+
+            var timeOff = new List<TimeOff>()
+            {
+                new TimeOff()
+                {
+                    //Vacations is after analyzed period
+                    Period = new DateRange(new DateTime(2018, 12, 29), new DateTime(2018, 12, 31)),
+                    Description = "Vacations"
+                }
+            };
+
+            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, timeOff);
+
+            Assert.AreEqual(timeSheet.Period, summary.Period);
+            Assert.AreEqual(TimeSpan.FromHours(6 * workDays), summary.PlannedWork);
+            Assert.AreEqual(TimeSpan.FromHours(6 * workDays), summary.TimeWorked);
+            Assert.AreEqual(TimeSpan.Zero, summary.WorkTimeBalance);
+        }
+
+        [Test]
+        public void SummaryCalculationWithVacationsBeforeTheAnalyzedPeriod()
+        {
+            int workDays = 93;
+            var timeSheet = new TimeSheet()
+            {
+                //98 week days
+                Period = new DateRange(new DateTime(2018, 8, 1), new DateTime(2018, 12, 7)),
+                TimeEntries = new List<TimeEntry>()
+                {
+                    new TimeEntry()
+                    {
+                        Duration = TimeSpan.FromHours(6*workDays),
+                        Client = "Mock Client",
+                        Project = "Normal project"
+                    }
+                }
+            };
+
+            var timeOff = new List<TimeOff>()
+            {
+                new TimeOff()
+                {
+                    //Vacations is after analyzed period
+                    Period = new DateRange(new DateTime(2018, 1, 10), new DateTime(2018, 2, 10)),
+                    Description = "Vacations"
+                }
+            };
+
+            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, timeOff);
+
+            Assert.AreEqual(timeSheet.Period, summary.Period);
+            Assert.AreEqual(TimeSpan.FromHours(6 * workDays), summary.PlannedWork);
+            Assert.AreEqual(TimeSpan.FromHours(6 * workDays), summary.TimeWorked);
+            Assert.AreEqual(TimeSpan.Zero, summary.WorkTimeBalance);
+        }
     }
 }

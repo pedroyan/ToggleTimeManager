@@ -91,14 +91,6 @@ namespace TogglTimeManager.ViewModels
             Summary = user.CalculateSummary();
         }
 
-        private async Task UpdateTimeSummary()
-        {
-            UserInfo user = await _repository.GetUserInfo();
-            Summary = user.CalculateSummary();
-
-            await _repository.Persist(user);
-        }
-
         #endregion
 
         private async void UpdateTimeSheet()
@@ -108,13 +100,13 @@ namespace TogglTimeManager.ViewModels
             var viewModel = new NewSheetWindowViewModel();
             var newSheetWindow = new NewSheetWindow(viewModel);
 
-            viewModel.TimeSheetCreated += (s, e) =>
+            viewModel.TimeSheetCreated += async (s, e) =>
             {
                 user.TimeSheet = e.TimeSheet;
                 user.WorkContract = e.WorkContract;
-                Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, user.TimeSheet, user.TimeOffs);
+                Summary = user.CalculateSummary();
 
-                _repository.Persist(user);
+                await _repository.Persist(user);
                 _windowService.Close(newSheetWindow);
             };
 
