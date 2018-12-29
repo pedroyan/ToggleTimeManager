@@ -11,27 +11,5 @@ namespace TogglTimeManager.ViewModels
 {
     public class TimeOffWindowViewModel : ObservableObject
     {
-        private DateRange? _range;
-
-        public DateRange? Range
-        {
-            get => _range;
-            set
-            {
-                if (value == _range) return;
-                _range = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ICommand _changeRangeCommand;
-        public ICommand ChangeRangeCommand => _changeRangeCommand ?? (_changeRangeCommand = new ButtonCommand(ChangeRange));
-
-        private int _counter = 0;
-        private void ChangeRange()
-        {
-            _counter++;
-            Range = new DateRange(DateTime.Today, DateTime.Today.AddDays(_counter));
-        }
     }
 }

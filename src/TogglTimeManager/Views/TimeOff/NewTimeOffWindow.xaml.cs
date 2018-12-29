@@ -16,11 +16,11 @@ using TogglTimeManager.ViewModels;
 namespace TogglTimeManager.Views.TimeOff
 {
     /// <summary>
-    /// Interaction logic for TimeOffManagement.xaml
+    /// Interaction logic for NewTimeOff.xaml
     /// </summary>
-    public partial class TimeOffManagement : Window
+    public partial class NewTimeOffWindow : Window
     {
-        public TimeOffManagement(TimeOffWindowViewModel viewModel)
+        public NewTimeOffWindow(NewTimeOffViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

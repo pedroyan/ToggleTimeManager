@@ -70,6 +70,7 @@
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\TimespanExtensions.cs" />
     <Compile Include="IoC.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PageNavigationService.cs" />
     <Compile Include="Services\UserRepository.cs" />
     <Compile Include="Services\WindowService.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="ViewModels\CompleteInformationViewModel.cs" />
     <Compile Include="ViewModels\MainDashboardViewModel.cs" />
     <Compile Include="ViewModels\NewSheetWindowViewModel.cs" />
+    <Compile Include="ViewModels\NewTimeOffViewModel.cs" />
     <Compile Include="ViewModels\TimeOffWindowViewModel.cs" />
     <Compile Include="Views\MainDashboard\MainDashboard.xaml.cs">
       <DependentUpon>MainDashboard.xaml</DependentUpon>
@@ -87,8 +89,8 @@
     <Compile Include="Views\NewSheet\FileSelectionPage.xaml.cs">
       <DependentUpon>FileSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TimeOff\TimeOffManagement.xaml.cs">
-      <DependentUpon>TimeOffManagement.xaml</DependentUpon>
+    <Compile Include="Views\TimeOff\NewTimeOffWindow.xaml.cs">
+      <DependentUpon>NewTimeOffWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\DateRangePicker.xaml">
       <SubType>Designer</SubType>
@@ -121,7 +123,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TimeOff\TimeOffManagement.xaml">
+    <Page Include="Views\TimeOff\NewTimeOffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

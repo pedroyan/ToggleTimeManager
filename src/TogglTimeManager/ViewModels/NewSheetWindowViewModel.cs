@@ -23,7 +23,6 @@ namespace TogglTimeManager.ViewModels
         private IPageNavigationService _navigationService;
 
         public FileSelectionViewModel FileSelectionViewModel { get; }
-        public CompleteInformationViewModel DateSelectionViewModel { get; private set; }
 
         #region Events
         public class TimeSheetCreatedEventArgs
@@ -48,8 +47,6 @@ namespace TogglTimeManager.ViewModels
 
         #endregion
 
-
-
         public NewSheetWindowViewModel()
         {
             FileSelectionViewModel = new FileSelectionViewModel(IoC.Resolve<IFilePicker>());
@@ -70,8 +67,8 @@ namespace TogglTimeManager.ViewModels
         {
             var goBackCommand = new ButtonCommand(_navigationService.GoBack);
 
-            DateSelectionViewModel = new CompleteInformationViewModel(timeSheet, goBackCommand);
-            DateSelectionViewModel.TimeSheetCompleted += (s, ea) =>
+            var dateSelectionViewModel = new CompleteInformationViewModel(timeSheet, goBackCommand);
+            dateSelectionViewModel.TimeSheetCompleted += (s, ea) =>
             {
                 if (ea.DateRange.HasValue)
                 {
@@ -80,7 +77,7 @@ namespace TogglTimeManager.ViewModels
                 OnTimeSheetCreated(new TimeSheetCreatedEventArgs(timeSheet, ea.WorkContract));
             };
 
-            _navigationService.Navigate(new DateSelectionPage(DateSelectionViewModel));
+            _navigationService.Navigate(new CompleteInformationPage(dateSelectionViewModel));
         }
     }
 }

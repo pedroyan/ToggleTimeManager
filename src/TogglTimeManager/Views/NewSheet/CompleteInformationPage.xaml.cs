@@ -4,11 +4,11 @@ using TogglTimeManager.ViewModels;
 namespace TogglTimeManager.Views.NewSheet
 {
     /// <summary>
-    /// Interaction logic for DateSelectionPage.xaml
+    /// Interaction logic for CompleteInformationPage.xaml
     /// </summary>
-    public partial class DateSelectionPage : Page
+    public partial class CompleteInformationPage : Page
     {
-        public DateSelectionPage(CompleteInformationViewModel viewModel)
+        public CompleteInformationPage(CompleteInformationViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

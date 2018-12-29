@@ -32,10 +32,11 @@ namespace TogglTimeManager
 
             IoC.RegisterServices();
 
-            new TimeOffManagement(new TimeOffWindowViewModel()
-            {
-                Range = new DateRange(DateTime.Today, DateTime.Today.AddDays(5))
-            }).Show();
+            //Remove this
+            new NewTimeOffWindow(IoC.Resolve<NewTimeOffViewModel>()).Show();
+            //Remove this
+
+            //Uncomment This
             /*
             _userRepository = IoC.Resolve<IUserRepository>();
             var userInfo = await _userRepository.GetUserInfo();
@@ -49,6 +50,7 @@ namespace TogglTimeManager
                 var vm = new MainDashboardViewModel(userInfo.Summary, _userRepository, IoC.Resolve<IWindowService>());
                 new MainDashboard(vm).Show();
             }*/
+            //Uncomment This
         }
 
         private void InitialSetup()
