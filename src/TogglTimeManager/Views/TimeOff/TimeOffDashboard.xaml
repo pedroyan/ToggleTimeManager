@@ -1,0 +1,25 @@
+﻿<Window x:Class="TogglTimeManager.Views.TimeOff.TimeOffDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TogglTimeManager.Views.TimeOff"
+        xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
+        xmlns:con="clr-namespace:TogglTimeManager.Converters"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:TimeOffWindowViewModel}"
+        Title="TimeOffDashboard" Height="450" Width="800">
+    <Grid>
+        <ListView ItemsSource="{Binding TimeOffs}" Width="310"
+                  HorizontalContentAlignment="Center" 
+                  VerticalAlignment="Center">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Period, Converter={con:DateRangeToStringConverter}}" 
+                                    Header="Period" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
