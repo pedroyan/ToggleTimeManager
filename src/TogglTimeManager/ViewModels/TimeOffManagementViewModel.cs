@@ -12,13 +12,13 @@ using TogglTimeManager.Views.TimeOff;
 
 namespace TogglTimeManager.ViewModels
 {
-    public class TimeOffWindowViewModel : ObservableObject
+    public class TimeOffManagementViewModel : ObservableObject
     {
         private readonly IWindowService _windowService;
         private readonly IUserRepository _userRepository;
         private UserInfo _userInfo;
 
-        public TimeOffWindowViewModel(IWindowService windowService, IUserRepository userRepository)
+        public TimeOffManagementViewModel(IWindowService windowService, IUserRepository userRepository)
         {
             _windowService = windowService;
             _userRepository = userRepository;
@@ -42,21 +42,8 @@ namespace TogglTimeManager.ViewModels
         private ICommand _addTimeOffCommand;
         public ICommand AddTimeOffCommand => _addTimeOffCommand ?? (_addTimeOffCommand = new ButtonCommand(AddTimeOff));
 
-        private void AddTimeOff()
-        {
-            var vm = IoC.Resolve<NewTimeOffViewModel>();
-            var window = new NewTimeOffWindow(vm);
-
-            vm.TimeOffCreated += (s, e) =>
-            {
-                _userInfo.TimeOffs.Add(e);
-                TimeOffs.Add(e);
-                _userRepository.Persist(_userInfo);
-                _windowService.Close(window);
-            };
-
-            _windowService.ShowDialog(window);
-        }
+        private ICommand _removeTimeOffCommand;
+        public ICommand RemoveTimeOffCommand => _removeTimeOffCommand ?? (_removeTimeOffCommand = new RelayCommand<TimeOff>(RemoveTimeOff));
 
         #endregion
 
@@ -73,6 +60,30 @@ namespace TogglTimeManager.ViewModels
                 throw new ArgumentException("A user info instance should be available to use before this point");
             }
             TimeOffs = new ObservableCollection<TimeOff>(_userInfo.TimeOffs ?? new List<TimeOff>());
+        }
+
+        private void AddTimeOff()
+        {
+            var vm = IoC.Resolve<NewTimeOffViewModel>();
+            var window = new NewTimeOffWindow(vm);
+
+            vm.TimeOffCreated += (s, e) =>
+            {
+                _userInfo.TimeOffs.Add(e);
+                _userRepository.Persist(_userInfo);
+
+                TimeOffs.Add(e);
+                _windowService.Close(window);
+            };
+
+            _windowService.ShowDialog(window);
+        }
+
+        private void RemoveTimeOff(TimeOff timeOff)
+        {
+            TimeOffs.Remove(timeOff);
+            _userInfo.TimeOffs.Remove(timeOff);
+            _userRepository.Persist(_userInfo);
         }
     }
 }

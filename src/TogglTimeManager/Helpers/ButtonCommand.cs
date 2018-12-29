@@ -26,17 +26,21 @@ namespace TogglTimeManager.Helpers
         }
 
         /// <inheritdoc />
-        public bool CanExecute(object parameter)
+        public virtual bool CanExecute(object parameter)
         {
             return _canExecute?.Invoke() ?? true;
         }
 
         /// <inheritdoc />
-        public void Execute(object parameter)
+        public virtual void Execute(object parameter)
         {
             _whatToExecute();
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
     }
 }

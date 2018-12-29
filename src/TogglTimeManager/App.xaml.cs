@@ -33,7 +33,10 @@ namespace TogglTimeManager
             IoC.RegisterServices();
 
             //Remove this
-            new NewTimeOffWindow(IoC.Resolve<NewTimeOffViewModel>()).Show();
+            var vm = IoC.Resolve<TimeOffManagementViewModel>();
+            await vm.PrepareViewModel();
+
+            new TimeOffManagementWindow(vm).Show();
             //Remove this
 
             //Uncomment This

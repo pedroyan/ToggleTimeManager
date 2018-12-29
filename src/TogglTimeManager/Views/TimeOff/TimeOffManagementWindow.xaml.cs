@@ -11,17 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TogglTimeManager.ViewModels;
 
 namespace TogglTimeManager.Views.TimeOff
 {
     /// <summary>
-    /// Interaction logic for TimeOffDashboard.xaml
+    /// Interaction logic for TimeOffManagementWindow.xaml
     /// </summary>
-    public partial class TimeOffDashboard : Window
+    public partial class TimeOffManagementWindow : Window
     {
-        public TimeOffDashboard()
+        public TimeOffManagementWindow(TimeOffManagementViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }
