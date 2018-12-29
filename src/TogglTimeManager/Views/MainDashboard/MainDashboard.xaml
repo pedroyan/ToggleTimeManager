@@ -16,18 +16,23 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="_Manage">
-                <MenuItem Header="_Update time sheet" Command="{Binding UpdateTimeSheetCommand}">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New time sheet" Command="{Binding UpdateTimeSheetCommand}">
                     <MenuItem.Icon>
                         <Image Source="../../Resources/toggl.ico"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Vacations" Command="{Binding OpenTimeOffManagementCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="../../Resources/beach.ico"></Image>
-                    </MenuItem.Icon>
+                <MenuItem Header="_Export" Command="{Binding UpdateTimeSheetCommand}">
+                </MenuItem>
+                <MenuItem Header="_Import" Command="{Binding UpdateTimeSheetCommand}">
                 </MenuItem>
                 <Separator/>
+            </MenuItem>
+          
+            <MenuItem Header="_Vacations" Command="{Binding OpenTimeOffManagementCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../../Resources/beach.ico"></Image>
+                </MenuItem.Icon>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1">
