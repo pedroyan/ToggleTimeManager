@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainDashboardViewModel}"
-        Title="MainDashboard" Height="450" Width="800">
+        Title="MainDashboard" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <!-- Dashboard idea: https://social.msdn.microsoft.com/Forums/vstudio/en-US/c7edafe9-d4ac-4bd8-ac25-f4482cfdaa75/dockpanel-stackpanel-or-grid?forum=wpf -->
         <Grid.RowDefinitions>

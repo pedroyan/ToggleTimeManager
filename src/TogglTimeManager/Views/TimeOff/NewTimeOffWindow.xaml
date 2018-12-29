@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:NewTimeOffViewModel}"
-        Title="New time off" Height="214" Width="348" ResizeMode="NoResize">
+        Title="New time off" Height="214" Width="348" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Description:" FontWeight="Bold"/>

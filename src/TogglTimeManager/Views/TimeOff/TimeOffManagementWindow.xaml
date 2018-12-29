@@ -8,7 +8,7 @@
         xmlns:con="clr-namespace:TogglTimeManager.Converters"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:TimeOffManagementViewModel}"
-        Title="Time Off Management" Height="450" Width="800">
+        Title="Time Off Management" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <ListView ItemsSource="{Binding TimeOffs}" Width="390">

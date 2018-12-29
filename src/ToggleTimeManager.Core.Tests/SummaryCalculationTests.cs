@@ -157,7 +157,7 @@ namespace ToggleTimeManager.Core.Tests
         [Test]
         public void SummaryCalculationWithVacationsBeforeTheAnalyzedPeriod()
         {
-            int workDays = 93;
+            const int workDays = 93;
             var timeSheet = new TimeSheet()
             {
                 //98 week days
@@ -189,6 +189,48 @@ namespace ToggleTimeManager.Core.Tests
             Assert.AreEqual(TimeSpan.FromHours(6 * workDays), summary.PlannedWork);
             Assert.AreEqual(TimeSpan.FromHours(6 * workDays), summary.TimeWorked);
             Assert.AreEqual(TimeSpan.Zero, summary.WorkTimeBalance);
+        }
+
+        [Test]
+        public void SummaryCalculationWithVacationsPartiallyOverlappingTheWorkingPeriod()
+        {
+            const int weekDays = 23;
+            var timeSheet = new TimeSheet()
+            {
+                Period = new DateRange(new DateTime(2018, 8, 1), new DateTime(2018, 8, 31)),
+                TimeEntries = new List<TimeEntry>()
+                {
+                    new TimeEntry()
+                    {
+                        Duration = TimeSpan.FromHours(6*weekDays),
+                        Client = "Mock Client",
+                        Project = "Normal project"
+                    }
+                }
+            };
+
+            var timeOff = new List<TimeOff>()
+            {
+                new TimeOff()
+                {
+                    //Intersects analyzed period from the bottom
+                    Period = new DateRange(new DateTime(2018, 7, 10), new DateTime(2018, 8, 1)),
+                    Description = "Vacations"
+                },
+                new TimeOff()
+                {
+                    //Intersects analyzed period from the top
+                    Period = new DateRange(new DateTime(2018, 8, 31), new DateTime(2018, 9, 10)),
+                    Description = "Vacations 2"
+                },
+            };
+
+            var summary = TimeSummaryCalculator.CalculateHoursSummary(TimeSpan.FromHours(6), timeSheet, timeOff);
+
+            Assert.AreEqual(timeSheet.Period, summary.Period);
+            Assert.AreEqual(TimeSpan.FromHours(6 * (weekDays - 2)), summary.PlannedWork);
+            Assert.AreEqual(TimeSpan.FromHours(6 * weekDays), summary.TimeWorked);
+            Assert.AreEqual(TimeSpan.FromHours(6 * 2), summary.WorkTimeBalance);
         }
     }
 }

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:TogglTimeManager"
         xmlns:viewModels="clr-namespace:TogglTimeManager.ViewModels"
         mc:Ignorable="d"
-        Title="NewSheetWindow" Height="450" Width="800">
-    <Window.Content>
+        Title="NewSheetWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Content >
         <Grid>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
         </Grid>
