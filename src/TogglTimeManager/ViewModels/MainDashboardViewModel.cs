@@ -87,18 +87,14 @@ namespace TogglTimeManager.ViewModels
             _windowService.ShowDialog(new TimeOffManagementWindow(vm));
 
             //Get the latest instance and recalculate the Summary
-           
+            UserInfo user = await _repository.GetUserInfo();
+            Summary = user.CalculateSummary();
         }
 
         private async Task UpdateTimeSummary()
         {
             UserInfo user = await _repository.GetUserInfo();
-            if (user == null)
-            {
-                throw new NullReferenceException("A reference to an user must be available to update the time sheet");
-            }
-
-            Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, user.TimeSheet, null);
+            Summary = user.CalculateSummary();
 
             await _repository.Persist(user);
         }
@@ -108,10 +104,6 @@ namespace TogglTimeManager.ViewModels
         private async void UpdateTimeSheet()
         {
             UserInfo user = await _repository.GetUserInfo();
-            if (user == null)
-            {
-                throw new NullReferenceException("A reference to an user must be available to update the time sheet");
-            }
 
             var viewModel = new NewSheetWindowViewModel();
             var newSheetWindow = new NewSheetWindow(viewModel);

@@ -39,16 +39,7 @@ namespace TogglTimeManager.Services
                 return _currentUserInfo;
             }
 
-            try
-            {
-                _currentUserInfo = await GetFromFileStorage();
-            }
-            catch (Exception e)
-            {
-                //todo: log this
-                return null;
-            }
-
+            _currentUserInfo = await GetFromFileStorage();
             return _currentUserInfo;
         }
 

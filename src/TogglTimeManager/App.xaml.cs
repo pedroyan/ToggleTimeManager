@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Reflection;
@@ -33,16 +34,24 @@ namespace TogglTimeManager
             IoC.RegisterServices();
 
             _userRepository = IoC.Resolve<IUserRepository>();
-            var userInfo = await _userRepository.GetUserInfo();
 
-            if (userInfo == null)
+            try
+            {
+                UserInfo userInfo = await _userRepository.GetUserInfo();
+                var vm = new MainDashboardViewModel(userInfo.CalculateSummary(), _userRepository,
+                    IoC.Resolve<IWindowService>());
+                new MainDashboard(vm).Show();
+            }
+            catch (FileNotFoundException)
             {
                 InitialSetup();
             }
-            else
+            catch (Exception ex)
             {
-                var vm = new MainDashboardViewModel(userInfo.CalculateSummary(), _userRepository, IoC.Resolve<IWindowService>());
-                new MainDashboard(vm).Show();
+                MessageBox.Show($"Application could not start due to a fatal error:\n\n{ex.Message}", "Fatal Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
+                Current.Shutdown();
             }
         }
 

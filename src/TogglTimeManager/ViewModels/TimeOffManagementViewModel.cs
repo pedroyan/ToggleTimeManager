@@ -55,10 +55,6 @@ namespace TogglTimeManager.ViewModels
         {
             //This step is not done on the constructor because the constructor cannot execute async methods
             _userInfo = await _userRepository.GetUserInfo();
-            if (_userInfo == null)
-            {
-                throw new ArgumentException("A user info instance should be available to use before this point");
-            }
             TimeOffs = new ObservableCollection<TimeOff>(_userInfo.TimeOffs ?? new List<TimeOff>());
         }
 
