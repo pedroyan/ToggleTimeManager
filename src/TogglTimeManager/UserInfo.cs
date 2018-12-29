@@ -6,7 +6,7 @@ namespace TogglTimeManager
 {
     public class UserInfo
     {
-        public WorkHoursSummary Summary { get; set; }
+        public TimeSheet TimeSheet { get; set; }
         public TimeSpan WorkContract { get; set; }
         public List<TimeOff> TimeOffs { get; set; } = new List<TimeOff>();
     }

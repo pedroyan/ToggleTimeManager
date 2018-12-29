@@ -10,6 +10,7 @@ using TogglTimeManager.Core.Models;
 using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.Views.NewSheet;
+using TogglTimeManager.Views.TimeOff;
 
 namespace TogglTimeManager.ViewModels
 {
@@ -75,11 +76,38 @@ namespace TogglTimeManager.ViewModels
         private ICommand _updateTimeSheetCommand;
         public ICommand UpdateTimeSheetCommand => _updateTimeSheetCommand ?? (_updateTimeSheetCommand = new ButtonCommand(UpdateTimeSheet));
 
+        private ICommand _openTimeOffManagementCommand;
+        public ICommand OpenTimeOffManagementCommand => _openTimeOffManagementCommand ?? (_openTimeOffManagementCommand = new ButtonCommand(OpenTimeOffManagement));
+
+        private async void OpenTimeOffManagement()
+        {
+            var vm = IoC.Resolve<TimeOffManagementViewModel>();
+            await vm.PrepareViewModel();
+
+            _windowService.ShowDialog(new TimeOffManagementWindow(vm));
+
+            //Get the latest instance and recalculate the Summary
+           
+        }
+
+        private async Task UpdateTimeSummary()
+        {
+            UserInfo user = await _repository.GetUserInfo();
+            if (user == null)
+            {
+                throw new NullReferenceException("A reference to an user must be available to update the time sheet");
+            }
+
+            Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, user.TimeSheet, null);
+
+            await _repository.Persist(user);
+        }
+
         #endregion
 
         private async void UpdateTimeSheet()
         {
-            var user = await _repository.GetUserInfo();
+            UserInfo user = await _repository.GetUserInfo();
             if (user == null)
             {
                 throw new NullReferenceException("A reference to an user must be available to update the time sheet");
@@ -90,11 +118,9 @@ namespace TogglTimeManager.ViewModels
 
             viewModel.TimeSheetCreated += (s, e) =>
             {
+                user.TimeSheet = e.TimeSheet;
                 user.WorkContract = e.WorkContract;
-
-                //TODO: Implement this properly
-                user.Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, e.TimeSheet, null);
-                Summary = user.Summary;
+                Summary = TimeSummaryCalculator.CalculateHoursSummary(user.WorkContract, user.TimeSheet, user.TimeOffs);
 
                 _repository.Persist(user);
                 _windowService.Close(newSheetWindow);

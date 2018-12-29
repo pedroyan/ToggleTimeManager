@@ -11,6 +11,7 @@ using Autofac;
 using Autofac.Core;
 using TogglTimeManager.Core;
 using TogglTimeManager.Core.Models;
+using TogglTimeManager.Helpers;
 using TogglTimeManager.Services;
 using TogglTimeManager.ViewModels;
 using TogglTimeManager.Views;
@@ -29,18 +30,8 @@ namespace TogglTimeManager
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
             IoC.RegisterServices();
 
-            //Remove this
-            var vm = IoC.Resolve<TimeOffManagementViewModel>();
-            await vm.PrepareViewModel();
-
-            new TimeOffManagementWindow(vm).Show();
-            //Remove this
-
-            //Uncomment This
-            /*
             _userRepository = IoC.Resolve<IUserRepository>();
             var userInfo = await _userRepository.GetUserInfo();
 
@@ -50,10 +41,9 @@ namespace TogglTimeManager
             }
             else
             {
-                var vm = new MainDashboardViewModel(userInfo.Summary, _userRepository, IoC.Resolve<IWindowService>());
+                var vm = new MainDashboardViewModel(userInfo.CalculateSummary(), _userRepository, IoC.Resolve<IWindowService>());
                 new MainDashboard(vm).Show();
-            }*/
-            //Uncomment This
+            }
         }
 
         private void InitialSetup()
@@ -66,14 +56,14 @@ namespace TogglTimeManager
             {
                 var userInfo = new UserInfo()
                 {
-                    Summary = TimeSummaryCalculator.CalculateHoursSummary(ea.WorkContract, ea.TimeSheet, null),
+                    TimeSheet = ea.TimeSheet,
                     WorkContract = ea.WorkContract
                 };
 
                 //If this step fails, application should crash
                 _userRepository.Persist(userInfo);
 
-                var mdvm = new MainDashboardViewModel(userInfo.Summary, _userRepository, IoC.Resolve<IWindowService>());
+                var mdvm = new MainDashboardViewModel(userInfo.CalculateSummary(), _userRepository, IoC.Resolve<IWindowService>());
                 new MainDashboard(mdvm).Show();
 
                 window.Close();

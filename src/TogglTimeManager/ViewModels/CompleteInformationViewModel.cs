@@ -77,7 +77,7 @@ namespace TogglTimeManager.ViewModels
             }
         }
 
-        public bool ShowPeriod => /*!_timeSheet.Period.HasValue;*/ true;
+        public bool ShowPeriod => !_timeSheet.Period.HasValue;
 
         private string _periodErrorMessage;
         public string PeriodErrorMessage
